@@ -47,18 +47,20 @@ def remove_comments(code):
     return TOKEN.sub(replace, code)
 
 
-def run_experiment(data, condition):
+def run_experiment(data, condition, feature_limit=50000):
     """Use the same steps for both experiments so the comparison is fair."""
     labels = sorted(data.label.unique())
     results = []
-    folder_name = "experiment_1_original" if condition == "original" else "experiment_2_no_comments"
+    folder_name = {"original": "experiment_1_original",
+                   "comments_removed": "experiment_2_no_comments",
+                   "limited_features": "experiment_2b_500_features"}[condition]
     folder = OUTPUT / folder_name
     folder.mkdir(exist_ok=True)
     model_folder = ROOT / "models" / folder_name
     model_folder.mkdir(parents=True, exist_ok=True)
-    code = data.code if condition == "original" else data.code.map(remove_comments)
+    code = data.code.map(remove_comments) if condition == "comments_removed" else data.code
     vectorizer = TfidfVectorizer(
-        analyzer="char", ngram_range=(3, 5), max_features=50000,
+        analyzer="char", ngram_range=(3, 5), max_features=feature_limit,
         sublinear_tf=True, lowercase=False, dtype=np.float32,
     )
     started = perf_counter()
@@ -162,6 +164,10 @@ def main():
     print("\nEXPERIMENT 2: CODE WITHOUT COMMENTS", flush=True)
     results += run_experiment(data, "comments_removed")
 
+    # EXPERIMENT 2B: Keep comments, but use only 500 character patterns.
+    print("\nEXPERIMENT 2B: 500 FEATURES", flush=True)
+    results += run_experiment(data, "limited_features", feature_limit=500)
+
     # FINAL COMPARISON: select with validation scores and report changes.
     results = pd.DataFrame(results)
     results.to_csv(OUTPUT / "metrics.csv", index=False)
@@ -173,6 +179,11 @@ def main():
     comparison["original_rank"] = comparison.groupby(level="split").original.rank(ascending=False)
     comparison["comments_removed_rank"] = comparison.groupby(level="split").comments_removed.rank(ascending=False)
     comparison.to_csv(OUTPUT / "comment_comparison.csv")
+    feature_comparison = comparison[["original", "limited_features"]].copy()
+    feature_comparison["change_percentage_points"] = 100 * (feature_comparison.limited_features - feature_comparison.original)
+    feature_comparison["original_rank"] = feature_comparison.groupby(level="split").original.rank(ascending=False)
+    feature_comparison["limited_rank"] = feature_comparison.groupby(level="split").limited_features.rank(ascending=False)
+    feature_comparison.to_csv(OUTPUT / "feature_comparison.csv")
     print("Validation-selected winner:", winner)
     print(results[results.split == "test"][["condition", "model", "accuracy", "macro_f1"]].to_string(index=False))
     print("Results saved in", OUTPUT)
