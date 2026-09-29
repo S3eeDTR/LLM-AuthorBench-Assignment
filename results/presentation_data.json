@@ -1,0 +1,217 @@
+{
+  "original": [
+    {
+      "model": "Naive Bayes",
+      "split": "validation",
+      "accuracy": 0.4831484195101528,
+      "macro_f1": 0.4670415633053179,
+      "macro_precision": 0.478647212717705,
+      "macro_recall": 0.4849677770858709,
+      "inference_seconds": 0.0476660999993328,
+      "training_seconds": 0.2165144999889889,
+      "model_MB": 4.639819
+    },
+    {
+      "model": "Naive Bayes",
+      "split": "test",
+      "accuracy": 0.4467910936476751,
+      "macro_f1": 0.4309304018310839,
+      "macro_precision": 0.4584593958507016,
+      "macro_recall": 0.4458430057780488,
+      "inference_seconds": 0.0601279999973485,
+      "training_seconds": 0.2165144999889889,
+      "model_MB": 4.639819
+    },
+    {
+      "model": "Logistic Regression",
+      "split": "validation",
+      "accuracy": 0.5982834414904752,
+      "macro_f1": 0.5941572043506493,
+      "macro_precision": 0.5977297655665245,
+      "macro_recall": 0.6005156463351389,
+      "inference_seconds": 0.0303617000026861,
+      "training_seconds": 22.779377400001977,
+      "model_MB": 1.382654
+    },
+    {
+      "model": "Logistic Regression",
+      "split": "test",
+      "accuracy": 0.5787491814014407,
+      "macro_f1": 0.5730607320372489,
+      "macro_precision": 0.583967116937951,
+      "macro_recall": 0.5774051300788903,
+      "inference_seconds": 0.040256499996758,
+      "training_seconds": 22.779377400001977,
+      "model_MB": 1.382654
+    },
+    {
+      "model": "Linear SVM",
+      "split": "validation",
+      "accuracy": 0.623194473518945,
+      "macro_f1": 0.6181872829494045,
+      "macro_precision": 0.6222979883981221,
+      "macro_recall": 0.6253621856546233,
+      "inference_seconds": 0.0424778000015066,
+      "training_seconds": 11.364357400001609,
+      "model_MB": 2.834757
+    },
+    {
+      "model": "Linear SVM",
+      "split": "test",
+      "accuracy": 0.589554682383759,
+      "macro_f1": 0.5797153365430381,
+      "macro_precision": 0.5885298255645623,
+      "macro_recall": 0.5881732672095284,
+      "inference_seconds": 0.0553204000025289,
+      "training_seconds": 11.364357400001609,
+      "model_MB": 2.834757
+    },
+    {
+      "model": "Random Forest",
+      "split": "validation",
+      "accuracy": 0.5698136906007955,
+      "macro_f1": 0.5428801306924492,
+      "macro_precision": 0.5533703103160756,
+      "macro_recall": 0.5723742861433319,
+      "inference_seconds": 0.4194751000031829,
+      "training_seconds": 53.340749800001504,
+      "model_MB": 24.325517
+    },
+    {
+      "model": "Random Forest",
+      "split": "test",
+      "accuracy": 0.5034381139489195,
+      "macro_f1": 0.4644578691077652,
+      "macro_precision": 0.5001835417353029,
+      "macro_recall": 0.5016297692987793,
+      "inference_seconds": 0.5521888000075705,
+      "training_seconds": 53.340749800001504,
+      "model_MB": 24.325517
+    }
+  ],
+  "ablation": [
+    {
+      "model": "Naive Bayes",
+      "split": "validation",
+      "accuracy_original": 0.4831484195101528,
+      "macro_f1_original": 0.4670415633053179,
+      "accuracy_ablated": 0.3514758216453841,
+      "macro_f1_ablated": 0.3335269926417727,
+      "rank_original": 4,
+      "rank_ablated": 4,
+      "f1_change_pp": -13.351457066354516
+    },
+    {
+      "model": "Naive Bayes",
+      "split": "test",
+      "accuracy_original": 0.4467910936476751,
+      "macro_f1_original": 0.4309304018310839,
+      "accuracy_ablated": 0.3372626064178127,
+      "macro_f1_ablated": 0.3165259991654916,
+      "rank_original": 4,
+      "rank_ablated": 4,
+      "f1_change_pp": -11.440440266559229
+    },
+    {
+      "model": "Logistic Regression",
+      "split": "validation",
+      "accuracy_original": 0.5982834414904752,
+      "macro_f1_original": 0.5941572043506493,
+      "accuracy_ablated": 0.46786686204731,
+      "macro_f1_ablated": 0.4622103132783586,
+      "rank_original": 2,
+      "rank_ablated": 3,
+      "f1_change_pp": -13.194689107229074
+    },
+    {
+      "model": "Logistic Regression",
+      "split": "test",
+      "accuracy_original": 0.5787491814014407,
+      "macro_f1_original": 0.5730607320372489,
+      "accuracy_ablated": 0.4300916830386379,
+      "macro_f1_ablated": 0.423459416716078,
+      "rank_original": 2,
+      "rank_ablated": 2,
+      "f1_change_pp": -14.960131532117094
+    },
+    {
+      "model": "Linear SVM",
+      "split": "validation",
+      "accuracy_original": 0.623194473518945,
+      "macro_f1_original": 0.6181872829494045,
+      "accuracy_ablated": 0.4961272765333891,
+      "macro_f1_ablated": 0.4902605497136038,
+      "rank_original": 1,
+      "rank_ablated": 1,
+      "f1_change_pp": -12.792673323580072
+    },
+    {
+      "model": "Linear SVM",
+      "split": "test",
+      "accuracy_original": 0.589554682383759,
+      "macro_f1_original": 0.5797153365430381,
+      "accuracy_ablated": 0.4399148657498363,
+      "macro_f1_ablated": 0.4286727429541175,
+      "rank_original": 1,
+      "rank_ablated": 1,
+      "f1_change_pp": -15.104259358892058
+    },
+    {
+      "model": "Random Forest",
+      "split": "validation",
+      "accuracy_original": 0.5698136906007955,
+      "macro_f1_original": 0.5428801306924492,
+      "accuracy_ablated": 0.4762403181913335,
+      "macro_f1_ablated": 0.4624877237462022,
+      "rank_original": 3,
+      "rank_ablated": 2,
+      "f1_change_pp": -8.039240694624706
+    },
+    {
+      "model": "Random Forest",
+      "split": "test",
+      "accuracy_original": 0.5034381139489195,
+      "macro_f1_original": 0.4644578691077652,
+      "accuracy_ablated": 0.4035690897184021,
+      "macro_f1_ablated": 0.379621295681104,
+      "rank_original": 3,
+      "rank_ablated": 3,
+      "f1_change_pp": -8.483657342666124
+    }
+  ],
+  "splits": [
+    {
+      "split": "train",
+      "samples": 21115,
+      "problems": 181
+    },
+    {
+      "split": "validation",
+      "samples": 4777,
+      "problems": 38
+    },
+    {
+      "split": "test",
+      "samples": 6108,
+      "problems": 40
+    }
+  ],
+  "baselines": {
+    "random_chance_accuracy": 0.125,
+    "majority_training_class": "qwen-2.5-72b-instruct",
+    "majority_test": {
+      "model": "Majority baseline",
+      "split": "test",
+      "accuracy": 0.11902423051735429,
+      "macro_f1": 0.026591075347476224,
+      "macro_precision": 0.014878028814669287,
+      "macro_recall": 0.125,
+      "inference_seconds": 6.539998867083341e-05
+    }
+  },
+  "svm_lr_validation_gap_before_pp": 2.4030078598755167,
+  "svm_lr_validation_gap_after_pp": 2.805023643524518,
+  "hypothesis_supported_on_validation": false,
+  "interpretation": "SVM's validation lead over Logistic Regression widened from 2.40 to 2.81 percentage points. This contradicts the follow-up expectation that removing comments would narrow its validation lead. SVM remained first on both validation and test. Random Forest and Logistic Regression swapped validation ranks, but their ablated F1 values differ by only 0.00028. Test ranking stayed unchanged. No significance or robust rank reversal is claimed.",
+  "data_explanation": "The measured property is a sparse, overlapping vocabulary of source and comment fragments: 50,000 features, 3.81% training density. Strong SVM coefficients include brace-adjacent comments, inline comment markers, and compact control syntax. Every classifier lost Macro-F1 when comments were removed. This supports the usefulness of comments, but the persistent SVM lead means comments alone do not explain why SVM won. Other lexical patterns remain a plausible contributor, not a demonstrated cause. A single split and refitted vocabulary limit causal and generalization claims."
+}

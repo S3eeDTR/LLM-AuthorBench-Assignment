@@ -182,3 +182,5 @@ C source -> shared character TF-IDF (3-5 grams; 50,000 features)
 - Conclusion: attribution is measurable on held-out inferred task families, with limited generalization claims.
 '''
     (ROOT/'slides_content.md').write_text(slides,encoding='utf-8')
+    from .assignment_report import augment_report
+    augment_report()

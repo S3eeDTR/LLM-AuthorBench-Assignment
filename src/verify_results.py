@@ -15,6 +15,19 @@ def verify():
         pred=pd.read_csv(ROOT/f'results/{row.model}_{row.split}_predictions.csv')
         assert np.isclose(accuracy_score(pred.true,pred.predicted),row.accuracy)
         assert np.isclose(f1_score(pred.true,pred.predicted,average='macro'),row.macro_f1)
+    ablated=pd.read_csv(ROOT/'results/ablation_model_results.csv')
+    assert len(ablated)==8 and ablated.model.nunique()==4
+    for row in ablated.itertuples():
+        pred=pd.read_csv(ROOT/f'results/Ablated {row.model}_{row.split}_predictions.csv')
+        assert set(pred.row_id)==set(splits.loc[splits.split==row.split,'row_id'])
+        assert np.isclose(accuracy_score(pred.true,pred.predicted),row.accuracy)
+        assert np.isclose(f1_score(pred.true,pred.predicted,average='macro'),row.macro_f1)
+    ranks=pd.read_csv(ROOT/'results/ablation_ranking.csv')
+    for condition,source in [('original',results),('ablated',ablated)]:
+        for split in ['validation','test']:
+            expected=source[source.split==split].set_index('model').macro_f1.rank(ascending=False,method='min')
+            actual=ranks[ranks.split==split].set_index('model')[f'rank_{condition}']
+            assert expected.sort_index().equals(actual.sort_index().astype(float))
     with zipfile.ZipFile(ROOT/'data/raw/LLM-AuthorBench.json.zip') as z: data=json.loads(z.read('LLM-AuthorBench.json'))
     winner=json.loads((ROOT/'results/selection.json').read_text())['winner']
     sample=pd.read_csv(ROOT/f'results/{winner}_test_predictions.csv').head(64)
@@ -25,6 +38,6 @@ def verify():
     frame=pd.DataFrame({'label':[d['model_name'] for d in data],'row_id':range(len(data))}).merge(splits[['row_id','split','problem_id']],on='row_id')
     report(frame,stats,winner,results,pd.read_csv(ROOT/'results/ablation_results.csv'))
     assert (ROOT/'slides_content.md').read_text(encoding='utf-8').count('# Slide ')==5
-    save_json('results/verification.json',{'split_disjointness':True,'all_main_metrics_recomputed_from_predictions':True,'saved_model_prediction_roundtrip_samples':64,'slides':5,'lexer_and_grouping_tests':7,'run_from_other_working_directory':__import__('pathlib').Path.cwd().resolve()!=ROOT})
+    save_json('results/verification.json',{'split_disjointness':True,'all_main_metrics_recomputed_from_predictions':True,'all_ablation_metrics_recomputed_from_predictions':True,'four_model_rankings_verified':True,'saved_model_prediction_roundtrip_samples':64,'slides':5,'lexer_and_grouping_tests':7,'run_from_other_working_directory':__import__('pathlib').Path.cwd().resolve()!=ROOT})
     print('Saved artifacts, metrics, split boundaries and five-slide content verified.')
 if __name__=='__main__': verify()

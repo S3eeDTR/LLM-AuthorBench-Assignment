@@ -13,3 +13,6 @@ The ablation removes comments with the same estimator settings and a fresh train
 The grouping review found and fixed numeric/filename variants, unquoted random histogram input, and several semantic aliases before the final model run. The independent upstream-template audit matched 298 of 300 generator templates and found no matched template spanning multiple inferred groups. Broad families intentionally sometimes combine related but distinct tasks (for example sorting/search variants connected by text similarity); this is conservative for overlap prevention, but means the 259 families are not an authoritative count of unique semantic problems.
 
 Residual limitation: arbitrary paraphrases and algorithmic similarities cannot be ruled out without authoritative IDs or exhaustive expert annotation. Assertions establish disjoint implemented groups and exact prompts/source hashes.
+
+
+Update after assignment review: the comment-removal condition now includes all four original algorithms, with common ablated matrices. Validation SVM/LR gap widened, so the directional follow-up hypothesis was not supported. See ablation_interpretation.md. Member details remain pending at the user's request.

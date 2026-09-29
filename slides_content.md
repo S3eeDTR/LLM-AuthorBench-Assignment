@@ -42,10 +42,14 @@ C source -> shared character TF-IDF (3-5 grams; 50,000 features)
 - Time excludes feature extraction; size is compressed classifier only.
 - Optional chart: `results/figures/macro_f1_comparison.png`.
 
-# Slide 5 - Why + Ablation
-- Winner: **Linear SVM**; 50,000 sparse lexical features (density 3.81%).
-- Sparse character cues suit a regularized linear model; top features include comment placement and compact control syntax.
-- Removing comments reduced Macro-F1, consistent with useful information in comment wording/style.
-- Comments removed; same classifier/settings/split, new training-only TF-IDF.
-- Test Macro-F1: **0.5797 -> 0.4287** (-15.10 pp).
-- Conclusion: attribution is measurable on held-out inferred task families, with limited generalization claims.
+# Slide 5 - Comments help, but SVM stays first
+| Model | Original validation F1 | No-comment validation F1 | Rank before / after |
+|---|---:|---:|---:|
+| Linear SVM | 0.6182 | 0.4903 | 1 / 1 |
+| Logistic Regression | 0.5942 | 0.4622 | 2 / 3 |
+| Random Forest | 0.5429 | 0.4625 | 3 / 2 |
+| Naive Bayes | 0.4670 | 0.3335 | 4 / 4 |
+
+- SVM's validation lead over Logistic Regression widened from 2.40 to 2.81 percentage points. This contradicts the follow-up expectation that removing comments would narrow its validation lead. SVM remained first on both validation and test. Random Forest and Logistic Regression swapped validation ranks, but their ablated F1 values differ by only 0.00028. Test ranking stayed unchanged. No significance or robust rank reversal is claimed.
+- Comments help all four classifiers, but do not explain SVM's unique advantage.
+- This is an exploratory follow-up after the initial SVM-only result. One split, no significance claim.

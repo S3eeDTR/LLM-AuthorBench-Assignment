@@ -11,7 +11,7 @@ missing_required_fields,0
 archive_sha256,e24399b7b05b812c5a1148ef44245348859eaa74b1140523cb695f984337f24c
 source,https://github.com/LLMauthorbench/LLMauthorbench
 license,No license file or explicit dataset license found in inspected upstream repository; redistribution permission unverified
-inspection_utc,2026-09-29T05:28:15.309739+00:00
+inspection_utc,2026-09-29T05:35:17.396709+00:00
 original_download_date,Unknown: user-supplied archive
 available_fields,"[""model_name"", ""prompt"", ""c_code"", ""SHA256_checksum"", ""char_count"", ""num_lines"", ""nloc"", ""CC"", ""token_size""]"
 problem_identifier,No explicit task ID; prompt-derived conservative task families

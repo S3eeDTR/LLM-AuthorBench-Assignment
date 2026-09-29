@@ -1,6 +1,6 @@
 {
   "features": 50000,
-  "fit_transform_seconds": 22.256601400004,
+  "fit_transform_seconds": 19.728825900005177,
   "vectorizer_MB": 0.465064,
   "train_shape": [
     21115,

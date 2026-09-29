@@ -1,8 +1,10 @@
 {
   "split_disjointness": true,
   "all_main_metrics_recomputed_from_predictions": true,
+  "all_ablation_metrics_recomputed_from_predictions": true,
+  "four_model_rankings_verified": true,
   "saved_model_prediction_roundtrip_samples": 64,
   "slides": 5,
   "lexer_and_grouping_tests": 7,
-  "run_from_other_working_directory": true
+  "run_from_other_working_directory": false
 }

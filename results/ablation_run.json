@@ -1,11 +1,13 @@
 {
-  "model": "Ablated Linear SVM",
+  "model": "Linear SVM",
   "split": "test",
   "accuracy": 0.4399148657498363,
   "macro_f1": 0.4286727429541175,
   "macro_precision": 0.4562440628812961,
   "macro_recall": 0.4390338663735083,
-  "inference_seconds": 0.045746200004941784,
-  "training_seconds": 9.609874999994645,
-  "classifier": "Linear SVM"
+  "inference_seconds": 0.04254650000075344,
+  "training_seconds": 8.439379299990833,
+  "model_MB": 2.800492,
+  "classifier": "Linear SVM",
+  "scope": "All four original algorithms, same common ablated features and settings"
 }
