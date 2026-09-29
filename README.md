@@ -123,6 +123,14 @@ The authors describe a corpus generated from 300 parameterized C-programming tem
 - Official release: https://github.com/LLMauthorbench/LLMauthorbench . The generator notebook is read only to audit template grouping, not executed or used to train the classifiers.
 - scikit-learn: https://scikit-learn.org/stable/ . Provides TF-IDF, the four classifiers and metrics. NumPy, pandas, Matplotlib and joblib support numerical arrays, tables, figures and serialization. Versions are recorded in requirements.txt and results/environment.json.
 
+## Fifth-model comparison in Google Colab
+
+[Open the CodeT5 notebook in Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/notebooks/CodeT5_Authorship_Colab.ipynb).
+
+The notebook adapts the authors' CodeT5-Authorship architecture to **our same eight labels and saved train/validation/test split**, then compares its measured results against our four existing classifiers. It also supports the same comment-removal ablation. Select a GPU runtime and run the cells in order; optional Google Drive storage preserves checkpoints.
+
+**Status: prepared, not trained.** No CodeT5 result or claim of superiority exists yet. Local validation checked Python syntax, all input hashes and 32,000 split joins, and identical comment removal on all 32,000 programs. GPU training and dependency execution await Colab. The paper's five-class scores are reference values under a different protocol; see [paper comparison](docs/PAPER_COMPARISON.md).
+
 ## Submission status
 
 Finished five-slide presentation: [Download the PowerPoint](presentation/LLM_AuthorBench_Assignment.pptx). Member details are intentionally pending at the user's request. The assignment still requires a verified research-use licence, confirmation of the dataset claim, and genuine contributions from every group member. See `docs/ASSIGNMENT_STATUS.md` and `docs/DATASET_PERMISSION.md`. The latter includes permission-request drafts; no messages have been sent.
