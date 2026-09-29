@@ -25,6 +25,8 @@ The dataset downloads automatically if missing. Start with [assignment.py](assig
 
 **Experiment 3 (Colab only): CodeT5.** Fine-tune the authors' encoder-based architecture on the same five classes and split. Run Setup, Shared code and Data preparation, then the four labeled Experiment 3 steps. GPU training can take many hours; Drive checkpoints are enabled. This experiment has not been trained here, so no CodeT5 scores are claimed.
 
+**Experiment 2B: 500 features.** Keep the original code and comments, but restrict the training-fitted TF-IDF vocabulary from 50,000 to 500 patterns. Keep all model settings and sample assignments fixed.
+
 ## Results
 
 | Model | Accuracy | Macro-F1 | Fit seconds | Size MB |
@@ -36,13 +38,15 @@ The dataset downloads automatically if missing. Start with [assignment.py](assig
 
 Linear SVM won on validation with Macro-F1 **0.8062**. Removing comments lowered every model's score but left the ranking unchanged. SVM test Macro-F1 fell from **0.7970 to 0.6032**. Its validation lead over Logistic Regression grew from **1.49 to 3.03 percentage points**, contrary to our prediction. Comments help attribution, but do not establish why SVM uniquely wins.
 
+The feature-limit follow-up narrowed SVM's validation lead over Logistic Regression from **1.49 to 1.39 percentage points**, only **0.10 points**. All four rankings stayed unchanged. This weakly supports the predicted gap direction, but still does not explain the winner conclusively. See [feature results](results/feature_comparison.csv) and [interpretation](results/feature_interpretation.md).
+
 Fit time excludes TF-IDF. Model size is the compressed classifier, excluding the shared vectorizer. These are single-run measurements without confidence intervals.
 
 ## Where things are
 
 - [assignment.py](assignment.py): all experiment code, clearly labeled.
 - [assignment.ipynb](assignment.ipynb): the same steps in Colab.
-- [results/](results/): separate `experiment_1_original` and `experiment_2_no_comments` folders, plus combined tables.
+- [results/](results/): separate `experiment_1_original` and `experiment_2_no_comments` folders, plus `experiment_2b_500_features` and combined tables.
 - [Five slides](submission/Assignment.pptx).
 
 <details>
