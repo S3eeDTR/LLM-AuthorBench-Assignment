@@ -1,12 +1,12 @@
 # LLM authorship assignment
 
-**Five LLM classes. Four simple models. Two experiments.**
+**Five LLM classes. Two simple experiments, plus optional CodeT5.**
 
 We use 20,000 C programs to test whether code patterns identify the LLM that wrote them. This connects to our research topic of LLM-generated code attribution.
 
 ## Run
 
-[Open in Google Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/assignment.ipynb) and run the cells in order. CPU is enough.
+[Open in Google Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/assignment.ipynb) for Experiments 1 and 2 on CPU. Optional Experiment 3 requires a GPU.
 
 Or use Python 3.12 locally:
 
@@ -15,13 +15,15 @@ python -m pip install -r requirements.txt
 python assignment.py
 ```
 
-The dataset downloads automatically if missing. Start with [assignment.py](assignment.py). The notebook contains the same experiment.
+The dataset downloads automatically if missing. Start with [assignment.py](assignment.py). The notebook adds optional Experiment 3 to the same first two experiments.
 
 ## Experiments
 
 **Experiment 1: original code.** Train Naive Bayes, Logistic Regression, Linear SVM and Random Forest on the same character TF-IDF features. Choose the highest validation Macro-F1, then report test scores.
 
 **Experiment 2: remove comments.** Repeat with the same split, seed and model settings. Compare scores and rankings. The prediction and its exploratory status are in [PLAN.md](PLAN.md).
+
+**Experiment 3 (Colab only): CodeT5.** Fine-tune the authors' encoder-based architecture on the same five classes and split. Run Setup, Shared code and Data preparation, then the four labeled Experiment 3 steps. GPU training can take many hours; Drive checkpoints are enabled. This experiment has not been trained here, so no CodeT5 scores are claimed.
 
 ## Results
 
