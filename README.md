@@ -1,29 +1,25 @@
 # LLM authorship assignment
 
-**Five LLM classes. Two simple experiments, plus optional CodeT5.**
+**Five LLM classes. Four classifiers. Original-code and ablation experiments.**
 
 We use 20,000 C programs to test whether code patterns identify the LLM that wrote them. This connects to our research topic of LLM-generated code attribution.
 
 ## Run
 
-[Open in Google Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/assignment.ipynb) for Experiments 1 and 2 on CPU. Optional Experiment 3 requires a GPU.
-
-Or use Python 3.12 locally:
+Use Python 3.12 locally:
 
 ```text
 python -m pip install -r requirements.txt
 python assignment.py
 ```
 
-The dataset downloads automatically if missing. Start with [assignment.py](assignment.py). The notebook adds optional Experiment 3 to the same first two experiments.
+The dataset downloads automatically if missing. Start with [assignment.py](assignment.py).
 
 ## Experiments
 
 **Experiment 1: original code.** Train Naive Bayes, Logistic Regression, Linear SVM and Random Forest on the same character TF-IDF features. Choose the highest validation Macro-F1, then report test scores.
 
 **Experiment 2: remove comments.** Repeat with the same split, seed and model settings. Compare scores and rankings. The prediction and its exploratory status are in [PLAN.md](PLAN.md).
-
-**Experiment 3 (Colab only): CodeT5.** Fine-tune the authors' encoder-based architecture on the same five classes and split. Run Setup, Shared code and Data preparation, then the four labeled Experiment 3 steps. GPU training can take many hours; Drive checkpoints are enabled. This experiment has not been trained here, so no CodeT5 scores are claimed.
 
 **Experiment 2B: 500 features.** Keep the original code and comments, but restrict the training-fitted TF-IDF vocabulary from 50,000 to 500 patterns. Keep all model settings and sample assignments fixed.
 
@@ -42,10 +38,31 @@ The feature-limit follow-up narrowed SVM's validation lead over Logistic Regress
 
 Fit time excludes TF-IDF. Model size is the compressed classifier, excluding the shared vectorizer. These are single-run measurements without confidence intervals.
 
+## Results figures and metric
+
+![SVM test confusion matrix](results/figures/svm_confusion_matrix.png)
+
+Rows are the actual LLM; columns are the prediction. Diagonal entries are correct: **3,088 of 3,872**, giving **79.75% accuracy**. The largest off-diagonal count is 199 DeepSeek programs predicted as Llama. Labels are shortened for readability.
+
+![Feature-limit ablation](results/figures/feature_ablation.png)
+
+For each class, precision asks how many predictions of that class were correct; recall asks how many actual examples of that class were found.
+
+$$P_k=\frac{TP_k}{TP_k+FP_k},\qquad R_k=\frac{TP_k}{TP_k+FN_k}$$
+
+$$F1_k=\frac{2P_kR_k}{P_k+R_k},\qquad \mathrm{Macro\text{-}F1}=\frac{1}{5}\sum_{k=1}^{5}F1_k$$
+
+Here TP means correct predictions of class k, FP means other classes incorrectly predicted as k, and FN means class k incorrectly predicted as another class. Undefined scores are set to zero. Macro-F1 gives each of the five classes equal weight. It is the average of class F1 scores, not F1 calculated from average precision and recall.
+
+Recreate the PNG files after running the experiment:
+
+```text
+python make_figures.py
+```
+
 ## Where things are
 
 - [assignment.py](assignment.py): all experiment code, clearly labeled.
-- [assignment.ipynb](assignment.ipynb): the same steps in Colab.
 - [results/](results/): separate `experiment_1_original` and `experiment_2_no_comments` folders, plus `experiment_2b_500_features` and combined tables.
 - [Five slides](submission/Assignment.pptx).
 
@@ -68,7 +85,7 @@ Both experiments use training-only character TF-IDF: 3–5 grams, up to 50,000 f
 
 The five labels match the [paper](https://arxiv.org/abs/2506.17323), but our group split, validation partition, features and algorithm choices differ. This is not a reproduction of the paper's scores. Earlier eight-class results were known before this rebuild; the ablation remains exploratory.
 
-Local versions are pinned in `requirements.txt` and recorded in `results/environment.json`. Colab keeps its preinstalled scientific libraries to avoid dependency conflicts and records them in `colab_environment.json`; numerical differences between environments are possible. The recorded run used Python 3.12.14. Trained models, raw data and temporary files stay local and are ignored by Git. The old implementation is recoverable from Git history.
+Versions are pinned in `requirements.txt` and recorded in `results/environment.json`. The recorded run used Python 3.12.14. Trained models, raw data and temporary files stay local and are ignored by Git. The old implementation is recoverable from Git history.
 
 </details>
 
