@@ -1,0 +1,7 @@
+{
+  "seed": 42,
+  "canonical_prompts": 322,
+  "inferred_problem_families": 259,
+  "grouping": "normalize numeric/quoted/list/placeholder parameters and instruction verbs; union similarity >=0.84 and substantial substring variants",
+  "limitation": "No authoritative task IDs. Assertions prove separation of inferred families and exact prompts, not all possible semantic equivalences. Grouping is label-independent and deliberately conservative."
+}

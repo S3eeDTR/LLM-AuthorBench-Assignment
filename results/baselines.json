@@ -1,0 +1,13 @@
+{
+  "random_chance_accuracy": 0.125,
+  "majority_training_class": "qwen-2.5-72b-instruct",
+  "majority_test": {
+    "model": "Majority baseline",
+    "split": "test",
+    "accuracy": 0.11902423051735429,
+    "macro_f1": 0.026591075347476224,
+    "macro_precision": 0.014878028814669287,
+    "macro_recall": 0.125,
+    "inference_seconds": 6.539998867083341e-05
+  }
+}

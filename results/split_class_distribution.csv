@@ -1,0 +1,4 @@
+split,claude-3.5-haiku,deepseek-chat,gemini-2.5-flash-preview-05-20,gpt-4.1,gpt-4o,gpt-4o-mini,llama-3.3-70b-instruct,qwen-2.5-72b-instruct
+test,776,771,757,781,774,735,787,727
+train,2624,2621,2651,2613,2626,2661,2641,2678
+validation,600,608,592,606,600,604,572,595

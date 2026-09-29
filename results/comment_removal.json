@@ -1,0 +1,5 @@
+{
+  "changed_programs": 31033,
+  "removed_characters": 13602714,
+  "normalization": "comments only; C line splicing applied; strings and character literals preserved; identifiers unchanged"
+}
