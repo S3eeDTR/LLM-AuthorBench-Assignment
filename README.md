@@ -64,7 +64,7 @@ Both experiments use training-only character TF-IDF: 3–5 grams, up to 50,000 f
 
 The five labels match the [paper](https://arxiv.org/abs/2506.17323), but our group split, validation partition, features and algorithm choices differ. This is not a reproduction of the paper's scores. Earlier eight-class results were known before this rebuild; the ablation remains exploratory.
 
-Versions are pinned in `requirements.txt` and recorded in `results/environment.json`. The recorded run used Python 3.12.14. Trained models, raw data and temporary files stay local and are ignored by Git. The old implementation is recoverable from Git history.
+Local versions are pinned in `requirements.txt` and recorded in `results/environment.json`. Colab keeps its preinstalled scientific libraries to avoid dependency conflicts and records them in `colab_environment.json`; numerical differences between environments are possible. The recorded run used Python 3.12.14. Trained models, raw data and temporary files stay local and are ignored by Git. The old implementation is recoverable from Git history.
 
 </details>
 
