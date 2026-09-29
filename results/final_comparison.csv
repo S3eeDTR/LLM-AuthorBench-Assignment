@@ -1,5 +1,0 @@
-Model,Accuracy,Macro-F1,Training (s),Model (MB)
-Naive Bayes,0.4468,0.4309,0.22,4.640
-Logistic Regression,0.5787,0.5731,22.78,1.383
-Linear SVM,0.5896,0.5797,11.36,2.835
-Random Forest,0.5034,0.4645,53.34,24.326

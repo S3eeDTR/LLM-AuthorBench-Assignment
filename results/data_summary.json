@@ -1,0 +1,9 @@
+{
+  "programs": 20000,
+  "classes": 5,
+  "programs_per_class": 4000,
+  "missing_required_values": 0,
+  "empty_code": 0,
+  "exact_duplicate_excess": 0,
+  "programs_changed_by_comment_removal": 19509
+}

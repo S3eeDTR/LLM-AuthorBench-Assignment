@@ -1,9 +1,0 @@
-,claude-3.5-haiku,deepseek-chat,gemini-2.5-flash-preview-05-20,gpt-4.1,gpt-4o,gpt-4o-mini,llama-3.3-70b-instruct,qwen-2.5-72b-instruct
-claude-3.5-haiku,326,53,43,8,17,31,84,38
-deepseek-chat,52,164,20,35,84,47,101,105
-gemini-2.5-flash-preview-05-20,10,8,454,9,16,8,42,45
-gpt-4.1,12,32,8,435,35,17,54,13
-gpt-4o,13,45,10,50,192,68,132,90
-gpt-4o-mini,28,49,8,20,109,134,156,100
-llama-3.3-70b-instruct,20,32,7,14,9,25,410,55
-qwen-2.5-72b-instruct,25,52,18,28,59,35,123,255
