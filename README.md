@@ -77,7 +77,7 @@ Multiply TF by IDF, then divide the nonzero vector by its Euclidean length. Abse
 
 ### 2. Give each author a score
 
-$$f_k(x)=w_k^T x+b_k,\qquad \widehat{y}=\operatorname*{arg\,max}_{k} f_k(x)$$
+![SVM author score and prediction: choose the class with the highest score](results/figures/svm_score.png)
 
 | Symbol | Plain meaning |
 |---|---|
@@ -94,7 +94,7 @@ These scores are not calibrated probabilities.
 
 For one author versus the rest, our default **L2-regularized, squared-hinge LinearSVC** minimizes:
 
-$$\min_{w,b}\;\frac{1}{2}\left(\lVert w\rVert_2^2+b^2\right)+C\sum_{i=1}^{n}\left[\max\left(0,1-y_i(w^T x_i+b)\right)\right]^2$$
+![SVM training objective: regularization plus squared-hinge loss](results/figures/svm_objective.png)
 
 - `i` indexes training programs; `n = 13,150` in this experiment.
 - `y_i = +1` for the chosen author and `−1` for other authors.
