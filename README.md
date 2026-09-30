@@ -121,7 +121,8 @@ The dataset downloads automatically if missing. Start with [assignment.py](assig
 
 ## Where things are
 
-- [assignment.py](assignment.py): all experiment code, clearly labeled.
+- [assignment.py](assignment.py): data checks, shared training steps, then Experiments 1, 2 and 2B.
+- [make_figures.py](make_figures.py): read top to bottom: Figure 1 (confusion matrix), Figure 2 (feature comparison), then equation images. This script reads saved results; it does not train models.
 - [results/](results/): separate `experiment_1_original` and `experiment_2_no_comments` folders, plus `experiment_2b_500_features` and combined tables.
 - [Five slides](submission/Assignment.pptx).
 

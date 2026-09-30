@@ -1,4 +1,4 @@
-"""Run the four-model assignment and its comment-removal experiment."""
+"""Run Experiment 1, Experiment 2 and Experiment 2B with four classifiers."""
 from pathlib import Path
 import hashlib
 import json
@@ -38,6 +38,8 @@ TOKEN = re.compile(r'"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'|//[^\n]*(?:\n|$)|/\*
 def remove_comments(code):
     code = code.replace('\\\r\n', '').replace('\\\n', '')
 
+    # The regular expression keeps quoted strings intact, including URLs.
+    # A simple split on // would incorrectly remove text inside strings.
     def replace(match):
         text = match.group()
         if text.startswith('//') or text.startswith('/*'):
@@ -48,7 +50,7 @@ def remove_comments(code):
 
 
 def run_experiment(data, condition, feature_limit=50000):
-    """Use the same steps for both experiments so the comparison is fair."""
+    """Fit TF-IDF, train each classifier, and save validation and test results."""
     labels = sorted(data.label.unique())
     results = []
     folder_name = {"original": "experiment_1_original",
@@ -58,13 +60,21 @@ def run_experiment(data, condition, feature_limit=50000):
     folder.mkdir(exist_ok=True)
     model_folder = ROOT / "models" / folder_name
     model_folder.mkdir(parents=True, exist_ok=True)
-    code = data.code.map(remove_comments) if condition == "comments_removed" else data.code
+    # Step 1: choose the source text for this experiment.
+    if condition == "comments_removed":
+        code = data["code"].map(remove_comments)
+    else:
+        code = data["code"]
+
+    # Step 2: learn character patterns from training code only.
     vectorizer = TfidfVectorizer(
         analyzer="char", ngram_range=(3, 5), max_features=feature_limit,
         sublinear_tf=True, lowercase=False, dtype=np.float32,
     )
     started = perf_counter()
-    x = {"train": vectorizer.fit_transform(code[data.split == "train"])}
+    training_code = code[data["split"] == "train"]
+    x = {}
+    x["train"] = vectorizer.fit_transform(training_code)
     feature_seconds = perf_counter() - started
     for part in ("validation", "test"):
         x[part] = vectorizer.transform(code[data.split == part])
@@ -75,7 +85,7 @@ def run_experiment(data, condition, feature_limit=50000):
         "vectorizer_MB": (model_folder / "vectorizer.joblib").stat().st_size / 1e6,
     }, indent=2))
 
-    # Train the four models on exactly the same features.
+    # Step 3: train the four models on exactly the same features.
     models = {
         "Naive Bayes": MultinomialNB(alpha=1.0),
         "Logistic Regression": LogisticRegression(C=1.0, max_iter=3000, solver="lbfgs", random_state=SEED),
@@ -93,7 +103,7 @@ def run_experiment(data, condition, feature_limit=50000):
         model_path = model_folder / f"{name}.joblib"
         joblib.dump(model, model_path, compress=3)
 
-        # Measure each model and save its predictions.
+        # Step 4: evaluate on validation and test, then save the evidence.
         for part in ("validation", "test"):
             rows = data[data.split == part]
             started = perf_counter()
@@ -109,15 +119,22 @@ def run_experiment(data, condition, feature_limit=50000):
                 "training_seconds": training_seconds, "inference_seconds": inference_seconds,
                 "model_MB": model_path.stat().st_size / 1e6,
             })
-            pd.DataFrame({"row_id": rows.row_id, "true": rows.label, "predicted": predicted}).to_csv(
-                folder / f"{name}_{part}_predictions.csv", index=False,
+            predictions = pd.DataFrame({
+                "row_id": rows["row_id"],
+                "true": rows["label"],
+                "predicted": predicted,
+            })
+            predictions.to_csv(folder / f"{name}_{part}_predictions.csv", index=False)
+
+            report = classification_report(
+                rows["label"], predicted, output_dict=True, zero_division=0,
             )
-            pd.DataFrame(classification_report(rows.label, predicted, output_dict=True, zero_division=0)).T.to_csv(
-                folder / f"{name}_{part}_classes.csv",
-            )
-            pd.DataFrame(confusion_matrix(rows.label, predicted, labels=labels), index=labels, columns=labels).to_csv(
-                folder / f"{name}_{part}_confusion.csv",
-            )
+            class_scores = pd.DataFrame(report).T
+            class_scores.to_csv(folder / f"{name}_{part}_classes.csv")
+
+            counts = confusion_matrix(rows["label"], predicted, labels=labels)
+            confusion = pd.DataFrame(counts, index=labels, columns=labels)
+            confusion.to_csv(folder / f"{name}_{part}_confusion.csv")
     return results
 
 
@@ -128,7 +145,10 @@ def main():
         archive.parent.mkdir(exist_ok=True)
         url = "https://raw.githubusercontent.com/LLMauthorbench/LLMauthorbench/6a1c2ac173c774cfbd012f4c81e8d0a51bb61eb7/LLM-AuthorBench.json.zip"
         urllib.request.urlretrieve(url, archive)
-    assert hashlib.sha256(archive.read_bytes()).hexdigest() == "e24399b7b05b812c5a1148ef44245348859eaa74b1140523cb695f984337f24c"
+    # Verify that we downloaded the same dataset version as the saved run.
+    expected_hash = "e24399b7b05b812c5a1148ef44245348859eaa74b1140523cb695f984337f24c"
+    actual_hash = hashlib.sha256(archive.read_bytes()).hexdigest()
+    assert actual_hash == expected_hash
     with zipfile.ZipFile(archive) as file:
         records = json.loads(file.read("LLM-AuthorBench.json"))
     data = pd.DataFrame({
@@ -151,7 +171,10 @@ def main():
     for part in ("train", "validation", "test"):
         assert set(data.loc[data.split == part, "label"]) == set(labels)
         for column in ("problem_id", "prompt", "source_hash"):
-            assert not set(data.loc[data.split == part, column]) & set(data.loc[data.split != part, column])
+            # No group, exact prompt or source code may cross partitions.
+            current_values = set(data.loc[data.split == part, column])
+            other_values = set(data.loc[data.split != part, column])
+            assert current_values.isdisjoint(other_values)
     print(data.groupby("split").size(), flush=True)
     pd.crosstab(data.split, data.label).to_csv(OUTPUT / "class_counts.csv")
     data.groupby("split").agg(samples=("row_id", "size"), groups=("problem_id", "nunique")).to_csv(OUTPUT / "split_counts.csv")
@@ -172,7 +195,11 @@ def main():
     results = pd.DataFrame(results)
     results.to_csv(OUTPUT / "metrics.csv", index=False)
     validation = results[(results.condition == "original") & (results.split == "validation")]
-    winner = validation.sort_values(["macro_f1", "model"], ascending=[False, True]).iloc[0].model
+    # Highest score wins; alphabetical order resolves an exact tie.
+    ranked_models = validation.sort_values(
+        ["macro_f1", "model"], ascending=[False, True],
+    )
+    winner = ranked_models.iloc[0]["model"]
     (OUTPUT / "winner.txt").write_text(f"Highest original validation Macro-F1: {winner}\n")
     comparison = results.pivot(index=["model", "split"], columns="condition", values="macro_f1")
     comparison["change_percentage_points"] = 100 * (comparison.comments_removed - comparison.original)
