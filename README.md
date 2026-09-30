@@ -14,7 +14,7 @@ LLM-AuthorBench provides generated C code with known author labels, directly mat
 
 **Experiment 1: original code.** Train Naive Bayes, Logistic Regression, Linear SVM and Random Forest on the same character TF-IDF features. Choose the highest validation Macro-F1, then report test scores.
 
-**Experiment 2: remove comments.** Repeat with the same split, seed and model settings. Compare scores and rankings. The prediction and its exploratory status are in [PLAN.md](PLAN.md).
+**Experiment 2: remove comments.** Repeat with the same split, seed and model settings. Compare scores and rankings. The exploratory prediction was that removing comments would narrow SVM's validation lead over Logistic Regression. The observed outcome is reported below.
 
 **Experiment 2B: 500 features.** Keep the original code and comments, but restrict the training-fitted TF-IDF vocabulary from 50,000 to 500 patterns. Keep all model settings and sample assignments fixed.
 
