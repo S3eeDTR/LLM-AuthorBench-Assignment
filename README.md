@@ -111,8 +111,6 @@ Instructor approval confirms the dataset choice for this assignment. An explicit
 - Fatima Alnuaimi
 - Fatima Alsadi
 
-Individual contributions will be recorded by the group based on work actually completed.
-
 ## AI assistance
 
 AI assisted with code, figures, documentation and explanations. Group members review the work and are responsible for understanding and presenting it.
