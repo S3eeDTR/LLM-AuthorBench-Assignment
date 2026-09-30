@@ -1,4 +1,4 @@
-"""Create the two presentation figures from saved experiment results."""
+"""Create result figures and typeset equations for the presentation."""
 from pathlib import Path
 import os
 ROOT = Path(__file__).resolve().parent
@@ -32,3 +32,15 @@ ax.spines[['top','right']].set_visible(False)
 fig.savefig(out/'feature_ablation.png',dpi=200); plt.close(fig)
 assert cm.values.sum()==3872
 print('Matrix total:',cm.values.sum(),'Correct:',np.trace(cm.values))
+
+# Typeset the presentation equations using mathematical notation.
+def save_equation(name, equation, width, height):
+    fig = plt.figure(figsize=(width, height))
+    fig.text(0.5, 0.5, equation, ha="center", va="center",
+             fontsize=27, color="#117C83", math_fontfamily="stix")
+    fig.savefig(out / name, dpi=240, transparent=True, bbox_inches="tight", pad_inches=0.08)
+    plt.close(fig)
+
+save_equation("svm_score.png", r"$f_k(\mathbf{x})=\mathbf{w}_k^{\mathsf{T}}\mathbf{x}+b_k,\qquad \hat{y}=\underset{k}{\mathrm{arg\,max}}\; f_k(\mathbf{x})$", 11, 1.1)
+save_equation("svm_objective.png", r"$\min_{\mathbf{w},b}\;\dfrac{1}{2}\left(\|\mathbf{w}\|_2^2+b^2\right)+C\sum_{i=1}^{n}\left[\max\left(0,1-y_i(\mathbf{w}^{\mathsf{T}}\mathbf{x}_i+b)\right)\right]^2$", 12, 1.5)
+save_equation("f1_equation.png", r"$F_1=\dfrac{2PR}{P+R},\qquad \mathrm{Macro}\!\!-\!F_1=\dfrac{1}{5}\sum_{k=1}^{5}F_{1,k}$", 8, 1.4)
