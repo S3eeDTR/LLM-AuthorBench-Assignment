@@ -2,11 +2,11 @@
 
 Predict which LLM generated a C program. We compare four classical classifiers and an additional CodeT5 encoder classifier on the same five-class split.
 
-[Download the five slides](submission/Assignment.pptx) · [Experiment code](assignment.py) · [Saved classical results](results/metrics.csv)
+[Download the presentation](submission/Assignment.pptx) · [Experiment code](assignment.py) · [Saved classical results](results/metrics.csv)
 
 ## Dataset
 
-Data comes from **[LLM-AuthorBench](https://github.com/LLMauthorbench/LLMauthorbench)**, associated with the paper [I Know Which LLM Wrote Your Code Last Summer](https://arxiv.org/abs/2506.17323). Our instructor approved the dataset by email.
+Data comes from **[LLM-AuthorBench](https://github.com/LLMauthorbench/LLMauthorbench)**, associated with the paper [I Know Which LLM Wrote Your Code Last Summer](https://arxiv.org/abs/2506.17323). Our instructor approved the dataset by email. This course project investigates whether patterns in generated code can identify its source model.
 
 We use **20,000 C programs**, with 4,000 from each author: Claude 3.5 Haiku, DeepSeek Chat, Gemini 2.5 Flash Preview, GPT-4.1 and Llama 3.3 70B Instruct. Known author labels, balanced classes and a common programming language make this dataset suitable for comparing code-attribution methods.
 
@@ -23,7 +23,11 @@ The saved split keeps related task groups together. Checks found no empty progra
 1. **Original code:** compare Naive Bayes, Logistic Regression, Linear SVM and Random Forest using character TF-IDF with up to 50,000 patterns of 3–5 characters. Fit the vocabulary on training data only.
 2. **Remove comments:** repeat the four-model comparison with the same split and settings.
 3. **Restrict features (2B):** retain comments but reduce the vocabulary to 500 patterns.
-4. **CodeT5:** fine-tune the pretrained encoder with mean pooling and a five-class head. Use the first 256 tokens, batch size 16 and learning rate 0.00002. Five epochs were completed on an A100; validation Macro-F1 selected epoch 3. This optional experiment ran in a separate local Colab notebook.
+4. **CodeT5:** fine-tune `Salesforce/codet5-base` with masked mean pooling and a five-class head. This is our smaller classifier, not a reproduction of the paper's CodeT5-Authorship architecture. Use the first 256 tokens, batch size 16 and learning rate 0.00002. Five epochs were completed on an A100; validation Macro-F1 selected epoch 3. This optional experiment ran in a separate local Colab notebook.
+
+We chose Naive Bayes as a simple probabilistic baseline, Logistic Regression and Linear SVM to compare two linear learning objectives, and Random Forest as a nonlinear tree ensemble. All four use the same TF-IDF features within each condition. CodeT5 provides an additional transfer-learning comparison.
+
+Here, **50,000 or 500 features** means the maximum number of distinct character patterns retained by training-corpus frequency. It does not change the number of programs.
 
 ## Results
 
@@ -53,7 +57,7 @@ Rows are actual authors; columns are predicted authors. The diagonal contains **
 
 Removing comments reduced every model's score, but SVM's validation lead over Logistic Regression grew from **1.49 to 3.03 percentage points**, contrary to the prediction. Limiting features to 500 narrowed that lead to **1.39 points**, a change of only **0.10 points**. Neither test changed the rankings.
 
-Comments and a richer vocabulary helped performance. These exploratory, single-split results do not conclusively explain why SVM won or establish statistical significance.
+A plausible explanation is that SVM's regularized margin objective suits the sparse character TF-IDF representation. Comments and a richer vocabulary helped performance. These exploratory, single-split results do not conclusively explain why SVM won or establish statistical significance.
 
 <details>
 <summary>Mathematics: TF-IDF, SVM and Macro-F1</summary>
@@ -95,7 +99,11 @@ The dataset downloads automatically if missing. `assignment.py` contains data ch
 
 Dataset snapshot: upstream commit `6a1c2ac173c774cfbd012f4c81e8d0a51bb61eb7`, inspected September 29, 2026. Archive SHA-256: `e24399b7b05b812c5a1148ef44245348859eaa74b1140523cb695f984337f24c`.
 
-`data/splits.csv` stores the seed-42 task-family assignments. The earlier preparation normalized prompt parameters and merged audited aliases and similar descriptions. Its [source](https://github.com/S3eeDTR/LLM-AuthorBench-Assignment/blob/33b42098d3bfdeddd8d94c77326a22fb8847be0a/src/prepare_data.py) remains available. The current script reuses and verifies the split.
+`data/splits.csv` stores the seed-42 task-family assignments, not the source code itself. The source code is in the downloaded archive's `c_code` field. The script joins programs to their assignments using row ID, author label and source hash; IDs and hashes are not model features.
+
+The allocation is approximately 70/15/15 by group count; the actual program proportions are 65.75% training, 14.89% validation and 19.36% test.
+
+`data/splits.csv` preserves the original assignments. The earlier preparation normalized prompt parameters and merged audited aliases and similar descriptions. Its [source](https://github.com/S3eeDTR/LLM-AuthorBench-Assignment/blob/33b42098d3bfdeddd8d94c77326a22fb8847be0a/src/prepare_data.py) remains available. The current script reuses and verifies the split.
 
 Model settings appear in `assignment.py`; package versions appear in `requirements.txt` and `results/environment.json`. Classical results are saved separately for each condition. Earlier outcomes were known before the ablations, so their interpretation is exploratory.
 
