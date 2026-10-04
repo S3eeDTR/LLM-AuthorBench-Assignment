@@ -1,6 +1,6 @@
 # LLM authorship classification
 
-Predict which LLM generated a C program. We compare four classical classifiers and an additional CodeT5 encoder classifier on the same five-class split.
+Predict which LLM generated a C program. Our main experiment compares four classical classifiers. A separate exploratory CodeT5 run checks whether a pretrained encoder can learn the same five author labels.
 
 [Download the presentation](submission/Assignment.pptx) · [Experiment code](assignment.py) · [Saved classical results](results/metrics.csv)
 
@@ -23,13 +23,13 @@ The saved split keeps related task groups together. Checks found no empty progra
 1. **Original code:** compare Naive Bayes, Logistic Regression, Linear SVM and Random Forest using character TF-IDF with up to 50,000 patterns of 3–5 characters. Fit the vocabulary on training data only.
 2. **Remove comments:** repeat the four-model comparison with the same split and settings.
 3. **Restrict features (2B):** retain comments but reduce the vocabulary to 500 patterns.
-4. **CodeT5:** fine-tune `Salesforce/codet5-base` with masked mean pooling and a five-class head. This is our smaller classifier, not a reproduction of the paper's CodeT5-Authorship architecture. Use the first 256 tokens, batch size 16 and learning rate 0.00002. Five epochs were completed on an A100; validation Macro-F1 selected epoch 3. This optional experiment ran in a separate local Colab notebook.
+4. **Exploratory CodeT5:** a separate original-code run with `Salesforce/codet5-base`, masked mean pooling and a five-class head. Five epochs completed on an A100; validation selected epoch 3. It was not included in the comment-removal or feature-reduction ablations. [Notebook and saved results](codet5/).
 
-We chose Naive Bayes as a simple probabilistic baseline, Logistic Regression and Linear SVM to compare two linear learning objectives, and Random Forest as a nonlinear tree ensemble. All four use the same TF-IDF features within each condition. CodeT5 provides an additional transfer-learning comparison.
+We chose Naive Bayes as a simple probabilistic baseline, Logistic Regression and Linear SVM to compare two linear learning objectives, and Random Forest as a nonlinear tree ensemble. All four use the same TF-IDF features within each condition. CodeT5 is documented separately as an exploratory transfer-learning run.
 
 Here, **50,000 or 500 features** means the maximum number of distinct character patterns retained by training-corpus frequency. It does not change the number of programs.
 
-## Results
+## Main results: four classical models
 
 Held-out test results on the same **3,872 programs**:
 
@@ -39,11 +39,10 @@ Held-out test results on the same **3,872 programs**:
 | Logistic Regression | 76.89% | 0.7704 | 15.17 | 0.863 |
 | **Linear SVM** | **79.75%** | **0.7970** | **5.36** | **1.767** |
 | Random Forest | 69.01% | 0.6796 | 20.11 | 9.935 |
-| CodeT5 encoder + mean pooling | 76.96% | 0.7725 | 291.71* | 438.494* |
 
-**Linear SVM performed best.** Its validation Macro-F1 was 0.8062, compared with CodeT5's 0.7998. CodeT5 ranked second on test Macro-F1. Its predictions were verified against the saved test IDs and labels. CodeT5's tokenizer, pretraining and truncation differ from TF-IDF, so this comparison does not isolate one cause of performance differences.
+**Linear SVM performed best among the four classical models.** Its original validation Macro-F1 was 0.8062. These models share TF-IDF features within each condition and use the same split.
 
-Classical times measure CPU fitting only, excluding TF-IDF. Their sizes are compressed classifier files. *CodeT5 time includes GPU training, validation and saving; its size is an uncompressed encoder-and-head checkpoint. These are different timing and storage conventions, not a controlled speed or memory comparison.*
+Times measure CPU classifier fitting only, excluding TF-IDF. Sizes are compressed classifier files; the vectorizer is saved separately.
 
 ### SVM confusion matrix
 
@@ -51,13 +50,28 @@ Classical times measure CPU fitting only, excluding TF-IDF. Their sizes are comp
 
 Rows are actual authors; columns are predicted authors. The diagonal contains **3,088 correct predictions**. The largest error cell is 199 DeepSeek programs predicted as Llama.
 
-### What the ablations showed
+### What the classical ablations showed
+
+These ablations were completed for Naive Bayes, Logistic Regression, Linear SVM and Random Forest only. **CodeT5 was not tested after comment removal.**
 
 ![Validation scores with 50,000 and 500 features](results/figures/feature_ablation.png)
 
 Removing comments reduced every model's score, but SVM's validation lead over Logistic Regression grew from **1.49 to 3.03 percentage points**, contrary to the prediction. Limiting features to 500 narrowed that lead to **1.39 points**, a change of only **0.10 points**. Neither test changed the rankings.
 
 A plausible explanation is that SVM's regularized margin objective suits the sparse character TF-IDF representation. Comments and a richer vocabulary helped performance. These exploratory, single-split results do not conclusively explain why SVM won or establish statistical significance.
+
+## Exploratory CodeT5 run
+
+We also tried a pretrained CodeT5 encoder on original code to see how it learned the author labels. This is separate from the main four-model comparison and is not a reproduction of the paper's architecture or a full ablation study.
+
+- Test accuracy: **76.96%**; test Macro-F1: **0.7725** on the same 3,872 test programs.
+- Five epochs completed; epoch 3 selected by validation Macro-F1 (**0.7998**).
+- Input: up to 256 tokens; batch size 16; learning rate 0.00002.
+- **No CodeT5 comment-removal ablation was run.** The 500-feature condition applies to TF-IDF models, not this neural model.
+
+[Open the notebook in Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/codet5/CodeT5_Exploratory.ipynb) · [CodeT5 folder and recorded results](codet5/)
+
+The presentation shows its score alongside the classical results for context; that does not make it a matched model or ablation comparison. Its recorded 291.71 seconds includes GPU training, validation and saving, and its 438.494 MB checkpoint contains uncompressed weights. These differ from the classical timing and storage conventions.
 
 <details>
 <summary>Mathematics: TF-IDF, SVM and Macro-F1</summary>
@@ -107,7 +121,7 @@ The allocation is approximately 70/15/15 by group count; the actual program prop
 
 Model settings appear in `assignment.py`; package versions appear in `requirements.txt` and `results/environment.json`. Classical results are saved separately for each condition. Earlier outcomes were known before the ablations, so their interpretation is exploratory.
 
-Instructor approval confirms the dataset choice for this assignment. An explicit dataset reuse licence has not been verified. Raw data, model weights, the personal study PDF and the optional notebook are not uploaded here.
+Instructor approval confirms the dataset choice for this assignment. An explicit dataset reuse licence has not been verified. Raw data, model weights and the personal study PDF are not uploaded here. The complete exploratory CodeT5 notebook and its recorded results are in `codet5/`; its outputs are cleared for rerunning, and the saved evidence is provided separately.
 
 </details>
 

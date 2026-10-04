@@ -1,0 +1,35 @@
+{
+  "model": "Salesforce/codet5-base",
+  "architecture": "encoder + masked mean pooling + dropout + linear head",
+  "model_revision": "02cd2d31bb7c6d0e4d91156167b2de044989c733",
+  "seed": 42,
+  "max_length": 256,
+  "batch_size": 16,
+  "epochs_requested": 5,
+  "epochs_completed": 5,
+  "learning_rate": 2e-05,
+  "weight_decay": 0.01,
+  "best_epoch": 3,
+  "best_validation_macro_f1": 0.7997564211227581,
+  "training_wall_seconds": 291.70636773599995,
+  "test_metrics": {
+    "accuracy": 0.7696280991735537,
+    "macro_f1": 0.772513580848748
+  },
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "project_version": "2956a0ad07f49529026cacd33728018d6ebf96ca",
+  "labels": [
+    "claude-3.5-haiku",
+    "deepseek-chat",
+    "gemini-2.5-flash-preview-05-20",
+    "gpt-4.1",
+    "llama-3.3-70b-instruct"
+  ],
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.1",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1"
+  }
+}

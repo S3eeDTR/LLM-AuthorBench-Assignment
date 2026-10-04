@@ -5,3 +5,6 @@ __pycache__/
 models/
 tmp/
 output/
+
+# Generated notebook downloads and checkpoints
+codet5_run/
