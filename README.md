@@ -111,6 +111,15 @@ Instructor approval confirms the dataset choice for this assignment. An explicit
 
 </details>
 
+## References
+
+1. Bisztray, T., et al. (2025). *I Know Which LLM Wrote Your Code Last Summer: LLM generated Code Stylometry for Authorship Attribution*. arXiv:2506.17323. [Research paper](https://arxiv.org/abs/2506.17323).
+2. LLM-AuthorBench. (n.d.). *LLM-AuthorBench dataset and experiment notebooks* [GitHub repository]. [Dataset and original implementation](https://github.com/LLMauthorbench/LLMauthorbench). Accessed October 4, 2026.
+3. Wang, Y., Wang, W., Joty, S., & Hoi, S. C. H. (2021). *CodeT5: Identifier-aware Unified Pre-trained Encoder-Decoder Models for Code Understanding and Generation*. Proceedings of EMNLP, 8696–8708. [CodeT5 paper](https://aclanthology.org/2021.emnlp-main.685/).
+4. Pedregosa, F., et al. (2011). *Scikit-learn: Machine Learning in Python*. Journal of Machine Learning Research, 12, 2825–2830. [Software reference](https://jmlr.org/papers/v12/pedregosa11a.html).
+
+Implementation documentation: [TF-IDF vectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) and [LinearSVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html).
+
 ## Group members
 
 - Saeed Alshehhi
