@@ -8,7 +8,7 @@ This folder extends [Assignment 1](../README.md) for the **CSBP711 Paper Critiqu
 
 Primary paper: Bisztray et al., *I Know Which LLM Wrote Your Code Last Summer*, [DOI](https://doi.org/10.1145/3733799.3762964).
 
-Authors' [public implementation](https://github.com/LLMauthorbench/LLMauthorbench/tree/6a1c2ac173c774cfbd012f4c81e8d0a51bb61eb7), revision `6a1c2ac173c774cfbd012f4c81e8d0a51bb61eb7`, especially `scripts/5_CodeT5-Authorship_5-class_google_colab.ipynb` and `scripts/4_TRAIN_Machine_learning_google_colab.ipynb`.
+Authors' [public implementation](https://github.com/LLMauthorbench/LLMauthorbench/tree/6a1c2ac173c774cfbd012f4c81e8d0a51bb61eb7), especially `scripts/5_CodeT5-Authorship_5-class_google_colab.ipynb` and `scripts/4_TRAIN_Machine_learning_google_colab.ipynb`.
 
 The neural adaptation keeps `Salesforce/codet5p-770m`, the first-token representation, a two-layer head with GELU and dropout 0.2, the `code: ` prefix and the main shared training settings. Changes are explicit:
 
