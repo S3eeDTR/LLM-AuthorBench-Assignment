@@ -1,0 +1,10 @@
+results/
+data/
+model_cache/
+.venv/
+__pycache__/
+*.pyc
+*.pt
+*.bin
+*.safetensors
+*.zip
