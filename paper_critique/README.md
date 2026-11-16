@@ -1,6 +1,6 @@
 # Paper Critique: code
 
-This folder extends [Assignment 1](../README.md) for the **CSBP711 Paper Critique**. It is separate from the later Course Project. It contains runnable code and a clean Colab notebook; reports, slides, result bundles, datasets and model weights are excluded.
+This folder extends [Assignment 1](../README.md) for the **CSBP711 Paper Critique**. 
 
 [Open the neural notebook in Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/paper_critique/CodeT5_Reality_Check_Colab.ipynb)
 
