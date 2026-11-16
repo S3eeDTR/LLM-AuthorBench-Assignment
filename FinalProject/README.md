@@ -4,6 +4,8 @@ Training-time comment removal for five-LLM code authorship classification.
 
 ## Run in Colab
 
+[Open the notebook in Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/FinalProject/FinalProject_Colab.ipynb)
+
 Open `FinalProject_Colab.ipynb`, select **A100 GPU**, then run the numbered cells in order.
 The notebook downloads a pinned version of the Python code and the baseline bundle from this repository. No manual ZIP upload is needed.
 
