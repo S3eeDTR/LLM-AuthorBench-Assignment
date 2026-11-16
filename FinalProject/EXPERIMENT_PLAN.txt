@@ -1,0 +1,44 @@
+QUESTION
+Does removing comments during training improve LLM authorship classification
+on comment-stripped code while retaining useful performance on original code?
+
+CONDITIONS
+Existing references: Assignment 1 character TF-IDF + Linear SVM;
+completed CodeT5 original-code training (0% removal).
+Proposed method: strip exactly 50% of training programs each epoch, selected
+using a separate seeded RNG. Programs without comments may remain unchanged.
+Ablation: strip 100% of training programs.
+
+CONTROLS
+Same 20,000 five-LLM samples and saved 13,150/2,978/3,872 split.
+Same CodeT5 checkpoint, classifier head, seed 42, 512 tokens, effective batch 32,
+10 epochs, learning rate 5e-5 and optimizer/scheduler as the completed adaptation.
+Each run starts from the pretrained checkpoint. Select the earliest checkpoint
+with the highest original-code validation accuracy. No test-based tuning.
+
+EVALUATION
+Evaluate both trained models on original and stripped versions of the fixed test set.
+Report accuracy, Macro-F1, per-class scores, confusion matrices, parameter count,
+checkpoint size and training/validation/checkpoint time.
+Compare stripped-code Macro-F1 against CodeT5 0%; report clean accuracy change.
+A clean accuracy decrease of at most 2 percentage points is a practical tolerance,
+chosen before the new runs. Improvement is a hypothesis, not an assumed outcome.
+Interpret the 100% condition as an ablation, not a test-based hyperparameter search.
+
+LIMITATIONS
+One seed; five model labels; this test set was already examined in the critique.
+Comment stripping can alter length/truncation and is not proof of causal reliance
+on comment style. The regex preserves ordinary quoted strings but is not a full C parser.
+SVM CPU fit time excludes vectorization; neural GPU times include validation and
+checkpoint writing. These timings are not directly comparable speed benchmarks.
+Package versions and hardware may differ from the historical neural baseline.
+
+SOURCES
+Paper: https://doi.org/10.1145/3733799.3762964
+Authors' repository: https://github.com/LLMauthorbench/LLMauthorbench
+Assignment and critique code: https://github.com/S3eeDTR/LLM-AuthorBench-Assignment
+Dataset and split are downloaded from pinned commits and checked by SHA256.
+
+This is an extension of the adapted classifier experiment, not an exact replication
+of every experiment in the original paper. Course rubric compliance should be
+checked against the course project brief before writing the final submission.

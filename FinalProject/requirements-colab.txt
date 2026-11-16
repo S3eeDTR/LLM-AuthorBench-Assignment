@@ -1,0 +1,7 @@
+transformers==4.57.1
+sentencepiece
+numpy==2.4.6
+pandas==2.2.3
+scikit-learn==1.6.1
+tqdm
+matplotlib
