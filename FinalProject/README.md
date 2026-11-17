@@ -91,6 +91,23 @@ The comparison makes no API requests. The test uses mocked generations to check 
 
 These exploratory results do not show a consistent accuracy improvement from chunking. Gemini is a newer version and is reported separately.
 
+### Match rate for each generating LLM
+
+Each generating LLM contributes **12 programs** in the newer study (six tasks, two requests). Values show the percentage of its programs assigned the expected label, not the classifier confidence score. Both coverage methods use the same saved code.
+
+| Generating LLM | Classifier | First512: kept | First512: removed | Chunks: kept | Chunks: removed |
+|---|---|---:|---:|---:|---:|
+| DeepSeek Chat | 50% model | 50.00% (6/12) | 58.33% (7/12) | 50.00% (6/12) | 50.00% (6/12) |
+| DeepSeek Chat | 100% model | 66.67% (8/12) | 66.67% (8/12) | 66.67% (8/12) | 66.67% (8/12) |
+| Gemini 2.5 Flash* | 50% model | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) |
+| Gemini 2.5 Flash* | 100% model | 16.67% (2/12) | 100.00% (12/12) | 25.00% (3/12) | 100.00% (12/12) |
+| GPT-4.1 | 50% model | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) |
+| GPT-4.1 | 100% model | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) | 100.00% (12/12) |
+| Llama 3.3 70B | 50% model | 75.00% (9/12) | 75.00% (9/12) | 75.00% (9/12) | 75.00% (9/12) |
+| Llama 3.3 70B | 100% model | 66.67% (8/12) | 66.67% (8/12) | 66.67% (8/12) | 66.67% (8/12) |
+
+*Gemini reports a **family-label match** because the served model differs from the training preview. Claude 3.5 Haiku was unavailable and was not generated in this study; no percentage is assigned to it. These small per-generator match rates are exploratory, not general accuracy estimates.
+
 ## Scope and sources
 
 The classifier always chooses among five known LLM labels for C code. Scores are uncalibrated. It cannot prove authorship, detect human code or reject unknown generators.
