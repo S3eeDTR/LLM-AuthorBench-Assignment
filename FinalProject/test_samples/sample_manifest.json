@@ -1,0 +1,42 @@
+[
+  {
+    "file": "Claude_3_5_Haiku_row_74.c",
+    "label": "claude-3.5-haiku",
+    "row_id": 74,
+    "split": "test",
+    "source_sha256": "008c367dbe840c7ee8c4c80e896be7505f2d3c2bd42665bc2cedca8d5f9bbfa4",
+    "characters": 3373
+  },
+  {
+    "file": "DeepSeek_Chat_row_23.c",
+    "label": "deepseek-chat",
+    "row_id": 23,
+    "split": "test",
+    "source_sha256": "001d020b2da8e4a1f6558ed41e1e95c7379071f9d7586971e408382ab17a7479",
+    "characters": 2355
+  },
+  {
+    "file": "Gemini_2_5_Flash_row_87.c",
+    "label": "gemini-2.5-flash-preview-05-20",
+    "row_id": 87,
+    "split": "test",
+    "source_sha256": "00a4d5daaf563510564dd171f353979bff4628dcc7685128420fbe75d37c54c3",
+    "characters": 5507
+  },
+  {
+    "file": "GPT_4_1_row_18.c",
+    "label": "gpt-4.1",
+    "row_id": 18,
+    "split": "test",
+    "source_sha256": "001a828093182e99a25c9d537f83281d433409f277114ec052ad5628e9e1bc64",
+    "characters": 1490
+  },
+  {
+    "file": "Llama_3_3_70B_row_13.c",
+    "label": "llama-3.3-70b-instruct",
+    "row_id": 13,
+    "split": "test",
+    "source_sha256": "00154572aa18de446415bdccc0b63260eba6c0ab4036737913e297051aaed0e0",
+    "characters": 943
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "verification": "4 discriminating test programs; both original and stripped inputs; saved probabilities compared",
+  "model_revision": "3f7cc6e80aee6612f41253b5ee28f09f86faa35f",
+  "row_ids": [
+    14,
+    52,
+    92,
+    99
+  ],
+  "files": {
+    "best_model.pt": {
+      "condition": "100",
+      "sha256": "ae27539e28b88f44a58eb219967f6da28f3497527d0c05ad07f031cc08faa2d1",
+      "bytes": 1342907608,
+      "max_probability_error": {
+        "050": 0.9982601924566552,
+        "100": 0.0009756088256835938
+      }
+    },
+    "best_model (1).pt": {
+      "condition": "050",
+      "sha256": "583df4edfee7165487a63fbc7ad3be8156046fa65f4096f06ad7cfee9d15419a",
+      "bytes": 1342907608,
+      "max_probability_error": {
+        "050": 0.005771279335021973,
+        "100": 0.9982366010081023
+      }
+    }
+  }
+}
