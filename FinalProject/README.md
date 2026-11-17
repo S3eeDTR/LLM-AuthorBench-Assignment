@@ -2,6 +2,27 @@
 
 Training and local inference code extending Assignment 1 and the paper critique. Reports and slides are intentionally excluded.
 
+## Results: accuracy percentages
+
+### Held-out benchmark
+
+All conditions use the same 3,872 test programs from five generator classes, with seed 42 and first-512-token inference. Training removal percentages describe how often training inputs have comments removed. Input columns describe whether test comments are kept or removed.
+
+| Model / training condition | Comments kept: accuracy | Comments removed: accuracy |
+|---|---:|---:|
+| Character TF-IDF SVM baseline | 79.75% | 40.81% |
+| CodeT5 baseline: 0% removal | 85.90% | 49.66% |
+| CodeT5: 50% removal | 83.24% | 79.57% |
+| CodeT5: 100% removal | 60.77% | 81.74% |
+
+The 50% model improves stripped-code accuracy by **29.91 percentage points** over the CodeT5 baseline, with a **2.66-point** decrease on original code. Stripped-code Macro-F1 rises from **0.4349 to 0.7919**. The clean-accuracy loss exceeds the prespecified two-point tolerance, so the combined target was not fully met. The 100% model has the highest stripped-code accuracy (**81.74%**) but is substantially weaker when comments are kept. These are single-seed results on a previously examined test set.
+
+### Fresh generated code
+
+The earlier first-512 study recorded **75.00% (27/36)** comparable-ID matches for the 50% model with comments kept or removed. The 100% model recorded **66.67% (24/36)** with comments kept and **69.44% (25/36)** after removal. Newer Gemini family matches were 12/12 for both 50% conditions, and 0/12 kept versus 12/12 removed for the 100% model.
+
+The newer 48-program study is compared fairly below: both coverage methods use identical code. These are small exploratory label-match rates, not benchmark accuracy estimates. Gemini's newer version is evaluated separately, leaving 36 comparable-ID programs. Repeated inference conditions do not add independent programs.
+
 ## Colab notebooks
 
 - [Final project training](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/FinalProject/FinalProject_Colab.ipynb): select an A100 runtime and run the numbered cells in order.
@@ -63,10 +84,10 @@ The comparison makes no API requests. The test uses mocked generations to check 
 
 | Classifier / comments | First512 ID matches | Chunk ID matches | First512 Gemini family | Chunk Gemini family |
 |---|---:|---:|---:|---:|
-| 50% / kept | 27/36 | 27/36 | 12/12 | 12/12 |
-| 50% / removed | 28/36 | 27/36 | 12/12 | 12/12 |
-| 100% / kept | 28/36 | 28/36 | 2/12 | 3/12 |
-| 100% / removed | 28/36 | 28/36 | 12/12 | 12/12 |
+| 50% / kept | 75.00% (27/36) | 75.00% (27/36) | 100.00% (12/12) | 100.00% (12/12) |
+| 50% / removed | 77.78% (28/36) | 75.00% (27/36) | 100.00% (12/12) | 100.00% (12/12) |
+| 100% / kept | 77.78% (28/36) | 77.78% (28/36) | 16.67% (2/12) | 25.00% (3/12) |
+| 100% / removed | 77.78% (28/36) | 77.78% (28/36) | 100.00% (12/12) | 100.00% (12/12) |
 
 These exploratory results do not show a consistent accuracy improvement from chunking. Gemini is a newer version and is reported separately.
 
