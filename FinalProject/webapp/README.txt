@@ -1,30 +1,23 @@
-CODE ORIGIN — LOCAL WEB DEMO
+LOCAL CODE ATTRIBUTION PLATFORM
 
-Double-click START_WEB_APP.cmd in the FinalProject folder, then open:
-http://127.0.0.1:8765
+Setup, notebook links, model verification and commands: ../README.md
+Start from the repository root: python FinalProject/webapp/server.py --device cpu
+Then visit http://127.0.0.1:8765.
 
-The launcher uses the existing GPU-project Python environment, with CPU inference
-by default. It also checks .venv in FinalProject or system Python if needed.
-For another machine, install PyTorch and requirements-colab.txt first.
-From this folder: python server.py --device cpu
-Optional compatible GPU: python server.py --device cuda
+Pages: / (hub), /live, /generate, /study, /results.
+Inference supports both classifiers, comments kept/removed and first512/chunks.
+Full-code mode averages scores across overlapping windows. Scores are uncalibrated.
+Manual input is never executed or saved. Generated study code IS saved as evidence.
+OpenRouter generation uses your credits; local classification/retesting does not.
+Keys remain in request/worker memory and are excluded from saved study results.
 
-First analysis loads a 1.34 GB checkpoint. Comparing both models loads each in turn.
-Keep the server window open. Close it or press Ctrl+C to stop the app.
-Input is never compiled, executed, saved, or sent to a remote service.
-The local server binds only to 127.0.0.1. This is a research demo, not a public deployment.
+Test all analyzes the active batch. Test held-out examples replaces that batch with
+five benchmark examples. Import downloaded generation JSON to restore older outputs.
 
-SUPPORTED TASK
-C code, five known LLM labels, 512 model tokens. Long inputs are truncated with a warning.
-Scores are softmax outputs, not calibrated confidence or evidence of provenance.
-There is no human-code detector or unknown-model rejection.
-The 50% model is the default for balancing original and stripped input performance.
-Both checkpoints were identified against saved test predictions; see models/checkpoint_manifest.json.
+Saved study retest: select run, View saved study, choose coverage, then
+Retest saved code locally (no API key). Existing generations are reused.
+Progress saves under ../study_results/<run_id>/. Download ZIPs for backup.
+Import experiment/study ZIPs on /results; private evidence is not bundled in GitHub.
 
-The example button inserts an illustrative program with unknown authorship.
-It is not a measured test case or evidence that a prediction is correct.
-
-BENCHMARK SELECTOR
-Use Load a benchmark sample above the editor to choose one original test-set
-program per model. The recorded label and row ID are shown separately from
-the source. Selection does not depend on classifier correctness.
+Prepare checkpoints/tokenizer with setup_models.py before starting.
+Keep the server process open while inference or studies run.

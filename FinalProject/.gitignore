@@ -1,0 +1,21 @@
+# Local data, credentials, weights and generated downloads
+.venv/
+__pycache__/
+*.pyc
+*.pt
+*.pth
+.env
+.env.*
+models/
+study_results/
+evidence/
+source_backups/
+validation/
+coverage_comparison/
+# Documents are deliberately withheld from GitHub.
+report/
+presentation/
+*.pdf
+*.pptx
+*.tex
+*.zip

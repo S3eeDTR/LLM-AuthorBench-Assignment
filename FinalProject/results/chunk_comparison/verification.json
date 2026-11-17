@@ -1,0 +1,1546 @@
+{
+  "source_run": "a83921e953454cb8875c4c1d67f674a1",
+  "original_run": "376530e8f348422f94788d054e74a324",
+  "same_code_across_runs": 2,
+  "paired_rows": 384,
+  "saved_chunk_label_disagreements": 0,
+  "maximum_score_difference": 2.086162567138672e-06,
+  "chunk_verification": [
+    {
+      "sample": "p1_r1_1",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 7.450580596923828e-08
+    },
+    {
+      "sample": "p1_r1_1",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 7.450580596923828e-08
+    },
+    {
+      "sample": "p1_r1_2",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.8917489796876907e-10
+    },
+    {
+      "sample": "p1_r1_2",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 3.2014213502407074e-10
+    },
+    {
+      "sample": "p1_r1_3",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r1_3",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r1_4",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 5.820766091346741e-10
+    },
+    {
+      "sample": "p1_r1_4",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r2_5",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r2_5",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.7881393432617188e-07
+    },
+    {
+      "sample": "p1_r2_6",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r2_6",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.6298145055770874e-09
+    },
+    {
+      "sample": "p1_r2_7",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.238689482212067e-10
+    },
+    {
+      "sample": "p1_r2_7",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 6.402842700481415e-10
+    },
+    {
+      "sample": "p1_r2_8",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1641532182693481e-09
+    },
+    {
+      "sample": "p1_r2_8",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r1_9",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 7.078051567077637e-08
+    },
+    {
+      "sample": "p2_r1_9",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 7.078051567077637e-08
+    },
+    {
+      "sample": "p2_r1_10",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 4.284083843231201e-08
+    },
+    {
+      "sample": "p2_r1_10",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r1_11",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.280568540096283e-09
+    },
+    {
+      "sample": "p2_r1_11",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r1_12",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p2_r1_12",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p2_r2_13",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r2_13",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r2_14",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 3.259629011154175e-09
+    },
+    {
+      "sample": "p2_r2_14",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 4.656612873077393e-10
+    },
+    {
+      "sample": "p2_r2_15",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r2_15",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r2_16",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r2_16",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r1_17",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 4.6566128730773926e-09
+    },
+    {
+      "sample": "p3_r1_17",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 6.28642737865448e-09
+    },
+    {
+      "sample": "p3_r1_18",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p3_r1_18",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p3_r1_19",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.76837158203125e-07
+    },
+    {
+      "sample": "p3_r1_19",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.76837158203125e-07
+    },
+    {
+      "sample": "p3_r1_20",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p3_r1_20",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p3_r2_21",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.6775524020195007e-09
+    },
+    {
+      "sample": "p3_r2_21",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.6775524020195007e-09
+    },
+    {
+      "sample": "p3_r2_22",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p3_r2_22",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.3551048040390015e-09
+    },
+    {
+      "sample": "p3_r2_23",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.166496753692627e-08
+    },
+    {
+      "sample": "p3_r2_23",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p3_r2_24",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 4.656612873077393e-10
+    },
+    {
+      "sample": "p3_r2_24",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 7.450580596923828e-09
+    },
+    {
+      "sample": "p4_r1_25",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r1_25",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r1_26",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p4_r1_26",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.6880221664905548e-09
+    },
+    {
+      "sample": "p4_r1_27",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 6.752088665962219e-09
+    },
+    {
+      "sample": "p4_r1_27",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 6.752088665962219e-09
+    },
+    {
+      "sample": "p4_r1_28",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p4_r1_28",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.8312206268310547e-07
+    },
+    {
+      "sample": "p4_r2_29",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 2.980232238769531e-07
+    },
+    {
+      "sample": "p4_r2_29",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 2.980232238769531e-07
+    },
+    {
+      "sample": "p4_r2_30",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p4_r2_30",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r2_31",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 6.28642737865448e-09
+    },
+    {
+      "sample": "p4_r2_31",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.3969838619232178e-09
+    },
+    {
+      "sample": "p4_r2_32",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.9371509552001953e-07
+    },
+    {
+      "sample": "p4_r2_32",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r1_33",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.7881393432617188e-06
+    },
+    {
+      "sample": "p5_r1_33",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 8.940696716308594e-08
+    },
+    {
+      "sample": "p5_r1_34",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r1_34",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r1_35",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.4924596548080444e-10
+    },
+    {
+      "sample": "p5_r1_35",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1641532182693481e-09
+    },
+    {
+      "sample": "p5_r1_36",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.0954757928848267e-09
+    },
+    {
+      "sample": "p5_r1_36",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 7.2177499532699585e-09
+    },
+    {
+      "sample": "p5_r2_37",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "claude-3.5-haiku",
+      "local_label": "claude-3.5-haiku",
+      "max_score_difference": 1.7881393432617188e-07
+    },
+    {
+      "sample": "p5_r2_37",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.6566128730773926e-08
+    },
+    {
+      "sample": "p5_r2_38",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r2_38",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 2.6775524020195007e-09
+    },
+    {
+      "sample": "p5_r2_39",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.820766091346741e-09
+    },
+    {
+      "sample": "p5_r2_39",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p5_r2_40",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.7939677238464355e-09
+    },
+    {
+      "sample": "p5_r2_40",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 3.259629011154175e-09
+    },
+    {
+      "sample": "p6_r1_41",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p6_r1_41",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.587935447692871e-09
+    },
+    {
+      "sample": "p6_r1_42",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 9.89530235528946e-10
+    },
+    {
+      "sample": "p6_r1_42",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 2.5029294192790985e-09
+    },
+    {
+      "sample": "p6_r1_43",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.3655745685100555e-10
+    },
+    {
+      "sample": "p6_r1_43",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.3655745685100555e-10
+    },
+    {
+      "sample": "p6_r1_44",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.7939677238464355e-09
+    },
+    {
+      "sample": "p6_r1_44",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 4.190951585769653e-09
+    },
+    {
+      "sample": "p6_r2_45",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1175870895385742e-08
+    },
+    {
+      "sample": "p6_r2_45",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1175870895385742e-08
+    },
+    {
+      "sample": "p6_r2_46",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p6_r2_46",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p6_r2_47",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.4924596548080444e-10
+    },
+    {
+      "sample": "p6_r2_47",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.4924596548080444e-10
+    },
+    {
+      "sample": "p6_r2_48",
+      "classifier": "050",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p6_r2_48",
+      "classifier": "050",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 3.725290298461914e-08
+    },
+    {
+      "sample": "p1_r1_1",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.364418029785156e-07
+    },
+    {
+      "sample": "p1_r1_1",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.364418029785156e-07
+    },
+    {
+      "sample": "p1_r1_2",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 9.022187441587448e-10
+    },
+    {
+      "sample": "p1_r1_2",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 6.548361852765083e-11
+    },
+    {
+      "sample": "p1_r1_3",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r1_3",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.3646862246096134e-11
+    },
+    {
+      "sample": "p1_r1_4",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r1_4",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r2_5",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.6763806343078613e-07
+    },
+    {
+      "sample": "p1_r2_5",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.0728836059570312e-06
+    },
+    {
+      "sample": "p1_r2_6",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 6.556510925292969e-07
+    },
+    {
+      "sample": "p1_r2_6",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p1_r2_7",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.3646862246096134e-11
+    },
+    {
+      "sample": "p1_r2_7",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.4569682106375694e-11
+    },
+    {
+      "sample": "p1_r2_8",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 6.984919309616089e-10
+    },
+    {
+      "sample": "p1_r2_8",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r1_9",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 0.0
+    },
+    {
+      "sample": "p2_r1_9",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 0.0
+    },
+    {
+      "sample": "p2_r1_10",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 7.275957614183426e-11
+    },
+    {
+      "sample": "p2_r1_10",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 2.2118911147117615e-09
+    },
+    {
+      "sample": "p2_r1_11",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.820766091346741e-11
+    },
+    {
+      "sample": "p2_r1_11",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p2_r1_12",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.210719347000122e-08
+    },
+    {
+      "sample": "p2_r1_12",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.210719347000122e-08
+    },
+    {
+      "sample": "p2_r2_13",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.92901711165905e-10
+    },
+    {
+      "sample": "p2_r2_13",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.92901711165905e-10
+    },
+    {
+      "sample": "p2_r2_14",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.001776687800884e-11
+    },
+    {
+      "sample": "p2_r2_14",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 4.190951585769653e-08
+    },
+    {
+      "sample": "p2_r2_15",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.001776687800884e-11
+    },
+    {
+      "sample": "p2_r2_15",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.001776687800884e-11
+    },
+    {
+      "sample": "p2_r2_16",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.2852251529693604e-07
+    },
+    {
+      "sample": "p2_r2_16",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.2852251529693604e-07
+    },
+    {
+      "sample": "p3_r1_17",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.0913936421275139e-10
+    },
+    {
+      "sample": "p3_r1_17",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r1_18",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r1_18",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 5.093170329928398e-11
+    },
+    {
+      "sample": "p3_r1_19",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r1_19",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r1_20",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p3_r1_20",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p3_r2_21",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r2_21",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r2_22",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r2_22",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 2.0372681319713593e-10
+    },
+    {
+      "sample": "p3_r2_23",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r2_23",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.0550138540565968e-10
+    },
+    {
+      "sample": "p3_r2_24",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p3_r2_24",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r1_25",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.8917489796876907e-10
+    },
+    {
+      "sample": "p4_r1_25",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.8917489796876907e-10
+    },
+    {
+      "sample": "p4_r1_26",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p4_r1_26",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 4.729372449219227e-11
+    },
+    {
+      "sample": "p4_r1_27",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r1_27",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r1_28",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.979060471057892e-09
+    },
+    {
+      "sample": "p4_r1_28",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 2.086162567138672e-06
+    },
+    {
+      "sample": "p4_r2_29",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 3.2014213502407074e-10
+    },
+    {
+      "sample": "p4_r2_29",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 3.2014213502407074e-10
+    },
+    {
+      "sample": "p4_r2_30",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 3.8743019104003906e-07
+    },
+    {
+      "sample": "p4_r2_30",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 9.458744898438454e-11
+    },
+    {
+      "sample": "p4_r2_31",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 0.0
+    },
+    {
+      "sample": "p4_r2_31",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r2_32",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p4_r2_32",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 3.725290298461914e-07
+    },
+    {
+      "sample": "p5_r1_33",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 2.980232238769531e-07
+    },
+    {
+      "sample": "p5_r1_33",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 2.384185791015625e-07
+    },
+    {
+      "sample": "p5_r1_34",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p5_r1_34",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 3.6088749766349792e-09
+    },
+    {
+      "sample": "p5_r1_35",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.1827872842550278e-11
+    },
+    {
+      "sample": "p5_r1_35",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r1_36",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.7462298274040222e-10
+    },
+    {
+      "sample": "p5_r1_36",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.3096723705530167e-10
+    },
+    {
+      "sample": "p5_r2_37",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p5_r2_37",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p5_r2_38",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 4.3958425521850586e-07
+    },
+    {
+      "sample": "p5_r2_38",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r2_39",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p5_r2_39",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p5_r2_40",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.6193447411060333e-10
+    },
+    {
+      "sample": "p5_r2_40",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.6007106751203537e-10
+    },
+    {
+      "sample": "p6_r1_41",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 4.0745362639427185e-10
+    },
+    {
+      "sample": "p6_r1_41",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "deepseek-chat",
+      "local_label": "deepseek-chat",
+      "max_score_difference": 1.3096723705530167e-10
+    },
+    {
+      "sample": "p6_r1_42",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.960464477539063e-08
+    },
+    {
+      "sample": "p6_r1_42",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 8.731149137020111e-11
+    },
+    {
+      "sample": "p6_r1_43",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.7284841053187847e-11
+    },
+    {
+      "sample": "p6_r1_43",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.7284841053187847e-11
+    },
+    {
+      "sample": "p6_r1_44",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 8.003553375601768e-11
+    },
+    {
+      "sample": "p6_r1_44",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p6_r2_45",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.6193447411060333e-10
+    },
+    {
+      "sample": "p6_r2_45",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 2.6193447411060333e-10
+    },
+    {
+      "sample": "p6_r2_46",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 4.3655745685100555e-11
+    },
+    {
+      "sample": "p6_r2_46",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gemini-2.5-flash-preview-05-20",
+      "local_label": "gemini-2.5-flash-preview-05-20",
+      "max_score_difference": 1.1920928955078125e-07
+    },
+    {
+      "sample": "p6_r2_47",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.275069270282984e-11
+    },
+    {
+      "sample": "p6_r2_47",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "gpt-4.1",
+      "local_label": "gpt-4.1",
+      "max_score_difference": 5.275069270282984e-11
+    },
+    {
+      "sample": "p6_r2_48",
+      "classifier": "100",
+      "strip": false,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 2.5704503059387207e-07
+    },
+    {
+      "sample": "p6_r2_48",
+      "classifier": "100",
+      "strip": true,
+      "saved_label": "llama-3.3-70b-instruct",
+      "local_label": "llama-3.3-70b-instruct",
+      "max_score_difference": 1.1920928955078125e-07
+    }
+  ]
+}

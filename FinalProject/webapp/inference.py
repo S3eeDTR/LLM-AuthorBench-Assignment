@@ -62,7 +62,7 @@ class Engine:
         self.model = model.to(self.device).eval()
         self.condition = condition
 
-    def analyze(self, code, model='050', strip=False):
+    def analyze(self, code, model='050', strip=False, mode='first512'):
         if not isinstance(code, str) or not code.strip():
             raise ValueError('Paste some C code first.')
         if len(code) > 100000:
@@ -71,25 +71,59 @@ class Engine:
             raise ValueError('Choose a supported model.')
         if not isinstance(strip, bool):
             raise ValueError('The comment setting must be true or false.')
+        if mode not in ['first512', 'chunks']:
+            raise ValueError('Choose first512 or chunks analysis.')
         with self.lock:
             started = time.perf_counter()
             source = remove_comments(code) if strip else code
-            all_ids = self.tokenizer.encode('code: ' + source, truncation=False)
-            inputs = self.tokenizer('code: ' + source, truncation=True, max_length=512,
-                                    padding='longest', pad_to_multiple_of=8,
-                                    return_tensors='pt', return_token_type_ids=False)
-            inputs = {key: value.to(self.device) for key, value in inputs.items()}
+            all_ids = self.tokenizer.encode('code: ' + source, truncation=False, verbose=False)
+            windows=[]
+            if mode=='chunks':
+                raw=self.tokenizer.encode('code: '+source,add_special_tokens=False,verbose=False)
+                prefix=self.tokenizer.encode('code:',add_special_tokens=False)
+                if raw[:len(prefix)]!=prefix:
+                    raise ValueError('Tokenizer prefix does not match the trained input format.')
+                content=raw[len(prefix):]
+                capacity=512-len(prefix)-self.tokenizer.num_special_tokens_to_add(pair=False)
+                overlap=min(64,capacity-1)
+                start=0
+                while True:
+                    end=min(start+capacity,len(content))
+                    ids=self.tokenizer.build_inputs_with_special_tokens(prefix+content[start:end])
+                    windows.append({'ids':ids,'start':start,'end':end})
+                    if end==len(content): break
+                    start=end-overlap
+            else:
+                ids=self.tokenizer.encode('code: '+source,truncation=True,max_length=512)
+                windows=[{'ids':ids,'start':0,'end':min(512,len(all_ids))}]
+                overlap=0
             results = []
             for condition in (['050', '100'] if model == 'both' else [model]):
                 self.load(condition)
-                with torch.inference_mode():
-                    logits = self.model(**inputs)
-                values = logits.float().softmax(-1)[0].cpu().tolist()
+                chunk_values=[];chunk_details=[]
+                for number,window in enumerate(windows,1):
+                    inputs=self.tokenizer.pad({'input_ids':[window['ids']],
+                        'attention_mask':[[1]*len(window['ids'])]},padding=True,
+                        pad_to_multiple_of=8,return_tensors='pt')
+                    inputs={key:value.to(self.device) for key,value in inputs.items()}
+                    with torch.inference_mode(): logits=self.model(**inputs)
+                    probabilities=logits.float().softmax(-1)[0].cpu()
+                    chunk_values.append(probabilities)
+                    best=int(probabilities.argmax())
+                    chunk_details.append({'chunk':number,'code_token_start':window['start']+1,
+                        'code_token_end':window['end'],'model_tokens':len(window['ids']),
+                        'prediction':DISPLAY[LABELS[best]],'score':float(probabilities[best])})
+                values=torch.stack(chunk_values).mean(0).tolist()
                 ranking = sorted([{'label': label, 'name': DISPLAY[label], 'score': values[i]}
                                   for i, label in enumerate(LABELS)], key=lambda x: -x['score'])
                 results.append({'condition': condition, 'prediction': ranking[0]['name'],
-                                'label': ranking[0]['label'], 'scores': ranking})
-            return {'results': results, 'input_tokens': len(all_ids), 'used_tokens': min(512, len(all_ids)),
-                    'truncated': len(all_ids) > 512, 'comments_removed': strip,
+                                'label': ranking[0]['label'], 'scores': ranking,
+                                'chunks':chunk_details if mode=='chunks' else []})
+            return {'results': results, 'input_tokens': len(all_ids),
+                    'used_tokens': len(all_ids) if mode=='chunks' else min(512,len(all_ids)),
+                    'truncated': mode=='first512' and len(all_ids)>512, 'comments_removed': strip,
+                    'analysis_mode':mode,'chunk_count':len(windows),'overlap_tokens':overlap,
+                    'processed_tokens':sum(len(window['ids']) for window in windows),
+                    'aggregation':'unweighted mean of chunk softmax scores' if mode=='chunks' else 'single window',
                     'seconds': round(time.perf_counter() - started, 2), 'device': str(self.device),
                     'warning': 'Closed-set prediction among five LLMs. Scores are uncalibrated and do not establish authorship.'}

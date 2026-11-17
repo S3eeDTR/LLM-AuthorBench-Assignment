@@ -1,4 +1,6 @@
 const $ = id => document.getElementById(id);
+const transfer = sessionStorage.getItem('generated-code-transfer');
+sessionStorage.removeItem('generated-code-transfer');
 const example = `#include <stdio.h>\n\n/* Sum the integers from 1 to n. */\nint main(void) {\n    int n;\n    if (scanf("%d", &n) != 1 || n < 0) return 1;\n    long long sum = 0;\n    for (int i = 1; i <= n; ++i) {\n        sum += i;\n    }\n    printf("%lld\\n", sum);\n    return 0;\n}\n`;
 const count = () => { $('count').textContent = `${$('code').value.length.toLocaleString()} characters`; };
 let busy = false;
@@ -37,10 +39,18 @@ function render(data) {
             progress.setAttribute('aria-label', `${score.name} model score`); progress.className = 'score-progress';
             row.append(node('span', '', score.name), progress, node('span', 'score-value', `${(100 * score.score).toFixed(1)}%`)); ranks.append(row);
         }
-        block.append(ranks); container.append(block);
+        block.append(ranks);
+        if(data.analysis_mode==='chunks'){
+            const details=node('details');details.append(node('summary','',`View ${result.chunks.length} chunk predictions`));
+            details.append(node('p','result-meta','Code token ranges exclude the repeated prefix and special tokens.'));
+            for(const chunk of result.chunks)details.append(node('p','result-meta',`Chunk ${chunk.chunk} · code tokens ${chunk.code_token_start}–${chunk.code_token_end} · ${chunk.model_tokens} model tokens · ${chunk.prediction} (${(chunk.score*100).toFixed(1)}%)`));
+            block.append(details);
+        }
+        container.append(block);
     }
     const meta = node('p', 'result-meta', `${data.used_tokens} of ${data.input_tokens} tokens used · ${data.comments_removed ? 'Comments removed' : 'Comments kept'} · ${data.seconds}s · ${data.device.toUpperCase()}. Scores are uncalibrated.`);
     container.append(meta);
+    if(data.analysis_mode==='chunks')container.append(node('p','result-meta',`Full-code mode: ${data.chunk_count} window(s), ${data.overlap_tokens}-token overlap. Equal-weight average of chunk scores. This optional method has not been evaluated in the report; accuracy is not guaranteed to improve.`));
     if (data.truncated) container.append(node('p', 'result-meta truncation', 'Input exceeds the 512-token limit. Only the beginning was analyzed.'));
     $('empty').hidden = true; container.hidden = false;
 }
@@ -49,11 +59,11 @@ async function analyze() {
     if (!$('code').value.trim()) { $('status').textContent = 'Paste C code or try the example first.'; $('code').focus(); return; }
     busy = true; $('analyze').disabled = true; $('analyze').textContent = 'Analyzing…'; $('status').className = 'status';
     $('status').textContent = 'Loading the checkpoint and analyzing code. The first request takes longer.';
-    const submitted = { code: $('code').value, model: $('model').value, strip: $('preprocess').value === 'strip' };
+    const submitted = { code: $('code').value, model: $('model').value, strip: $('preprocess').value === 'strip', mode:$('coverage').value };
     try {
         const response = await fetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(submitted) });
         const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Analysis failed.');
-        if (submitted.code !== $('code').value || submitted.model !== $('model').value || submitted.strip !== ($('preprocess').value === 'strip')) {
+        if (submitted.code !== $('code').value || submitted.model !== $('model').value || submitted.strip !== ($('preprocess').value === 'strip') || submitted.mode!==$('coverage').value) {
             resetResults(); $('status').textContent = 'Input or settings changed. Click Analyze code again.'; return;
         }
         render(data); $('status').textContent = 'Analysis complete. No code was executed or saved.';
@@ -61,7 +71,7 @@ async function analyze() {
     finally { busy = false; $('analyze').disabled = false; $('analyze').textContent = 'Analyze code ↗'; }
 }
 $('analyze').onclick = analyze;
-for (const id of ['model', 'preprocess']) $(id).addEventListener('change', () => { resetResults(); $('status').textContent = 'Settings changed. Click Analyze code for a new prediction.'; });
+for (const id of ['model', 'preprocess','coverage']) $(id).addEventListener('change', () => { resetResults(); $('status').textContent = 'Settings changed. Click Analyze code for a new prediction.'; });
 $('code').addEventListener('keydown', event => { if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') analyze(); });
 fetch('/api/status').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { $('connection').textContent = `Local model · ${data.device.toUpperCase()}`; }).catch(() => { $('connection').textContent = 'Server unavailable'; $('status').textContent = 'Start the local server, then reload this page.'; });
 fetch('/api/samples').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
@@ -73,3 +83,6 @@ fetch('/api/samples').then(r => { if (!r.ok) throw new Error(); return r.json();
     }
     $('sample').disabled = false;
 }).catch(() => { $('sample').options[0].textContent = 'Samples unavailable'; $('sample-note').textContent = 'Paste code or use Open .c file instead.'; });
+if (transfer) {
+    try { const sample=JSON.parse(transfer); $('code').value=sample.code; customInput(); $('sample-note').textContent='Fresh generated sample · returned model: '+sample.model; $('status').textContent='Generated code loaded. Click Analyze code to test the classifier.'; } catch (_) {}
+}

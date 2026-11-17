@@ -1,78 +1,79 @@
-# FinalProject
+# FinalProject: LLM code attribution
 
-Comment-removal training for five-LLM C-code authorship classification, extending Assignment 1 and the paper critique.
+Training and local inference code extending Assignment 1 and the paper critique. Reports and slides are intentionally excluded.
 
-## Local web platform
+## Colab notebooks
 
-The web app accepts pasted C code, a local `.c` file, or one of five original benchmark samples. It supports the 50% and 100% training conditions, optional input-comment removal, ranked scores, and a 512-token truncation warning.
+- [Final project training](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/FinalProject/FinalProject_Colab.ipynb): select an A100 runtime and run the numbered cells in order.
+- [Paper critique baseline](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/paper_critique/CodeT5_Reality_Check_Colab.ipynb): separate baseline experiment.
 
-### Setup after cloning
+The final notebook pins training revision `2e9104d86defa2e67c32154ff9687bfde8821d6a` to reproduce the completed experiment. Web updates do not change that training implementation. Notebooks have outputs cleared; keep executed notebooks and evidence locally. Retraining is unnecessary when using existing checkpoints.
 
-Install PyTorch for your machine, then install the project dependencies:
+## Setup
 
-```text
+Use Python 3.11 or 3.12. From the repository root:
+
+```bash
+python -m pip install torch
 python -m pip install -r FinalProject/requirements-colab.txt
-```
-
-The large trained checkpoints are **not included in GitHub**. Use the downloaded project weights. Their verified mapping is:
-
-- `best_model (1).pt`: 50% removal.
-- `best_model.pt`: 100% removal.
-
-Prepare the weights and tokenizer from the repository root:
-
-```text
 python FinalProject/webapp/setup_models.py --mixed "path/to/best_model (1).pt" --stripped "path/to/best_model.pt"
-```
-
-The setup script checks checkpoint SHA256 values, copies weights into the ignored `FinalProject/models/` folder, and downloads only the pinned tokenizer/config files. For offline setup, add `--tokenizer-source "path/to/existing/tokenizer"` pointing to the project's tokenizer folder, including `config.json`.
-
-Start the platform:
-
-```text
 python FinalProject/webapp/server.py --device cpu
 ```
 
-Open **http://127.0.0.1:8765**. On Windows, `FinalProject/START_WEB_APP.cmd` also starts the app. It checks for an existing project Python environment before falling back to system Python. Optional compatible CUDA inference: `--device cuda`. CPU inference has been tested with the saved models.
+Weights are excluded from GitHub. `best_model (1).pt` is the verified 50% removal checkpoint; `best_model.pt` is the 100% checkpoint. Setup checks SHA256 values and downloads pinned tokenizer/config assets. Add `--tokenizer-source "path/to/tokenizer"` for offline assets, including `config.json`.
 
-The server binds to localhost. Submitted code is not executed or saved. Scores are uncalibrated and the classifier always chooses among five known LLM labels. It cannot establish provenance, detect human authorship, or reject an unseen generator.
+On Mac, open Terminal inside `FinalProject`, run `bash setup.command`, prepare weights, then `bash start.command`. Windows users may use `START_WEB_APP.cmd`.
 
-## Benchmark examples
+## Platform pages
 
-Use **Load a benchmark sample** above the editor to choose one original test-set program per model:
+Visit http://127.0.0.1:8765 after startup.
 
-| Recorded generator | Test row |
-|---|---:|
-| Claude 3.5 Haiku | 74 |
-| DeepSeek Chat | 23 |
-| Gemini 2.5 Flash preview | 87 |
-| GPT-4.1 | 18 |
-| Llama 3.3 70B Instruct | 13 |
+| Page | Purpose |
+|---|---|
+| `/` | Navigation hub |
+| `/live` | Analyze one C program with either classifier or both |
+| `/generate` | Shared OpenRouter prompt, six prompt presets, local batch classification |
+| `/study` | Six tasks, two requests per generator, saved progress and local retesting |
+| `/results` | Upload evidence ZIPs and explore results |
 
-`test_samples/` contains the unedited code, a label manifest and source hashes. Selection uses the first test row per label, without consulting classifier predictions. These are previously evaluated benchmark examples, not fresh independent tests. Some exceed the 512-token input window.
+OpenRouter generation requires your key and consumes credits. Local classification/retesting makes no generation requests. Keys are not saved to study files or downloads. Manual inference input is never executed or saved; generated study programs are saved as experiment evidence. The service binds to localhost.
 
-## Colab experiment
+**Test held-out examples** replaces the active batch with five benchmark samples. **Test all** analyzes the current batch. Import a previously downloaded generation JSON to restore your OpenRouter outputs without paying to regenerate them.
 
-[Open the notebook in Colab](https://colab.research.google.com/github/S3eeDTR/LLM-AuthorBench-Assignment/blob/main/FinalProject/FinalProject_Colab.ipynb)
+## Full-code chunks and saved studies
 
-Select A100 and run the numbered cells. The notebook downloads a pinned version of `experiment.py` and the fixed baseline reference. It trains both conditions independently and evaluates after both finish. It does not resume interrupted training.
+Both classifiers support comments kept/removed and first512/full-code coverage. Chunk mode uses up to 508 code tokens per window, 64-token overlap, and the trained prefix plus special tokens within 512 model tokens. Scores are averaged equally across chunks. Full coverage does not guarantee higher accuracy.
 
-Completed test results on the saved 3,872-row partition:
+To reuse a saved study: select its run, **View saved study**, choose coverage, then **Retest saved code locally (no API key)**. Existing generations are preserved, and only missing analyses are added. Both coverage methods stay separate. Progress saves under `study_results/<run_id>/`; download the ZIP as a backup. With four generators, the study uses 48 generation requests and 192 local classifications per coverage method (384 for both).
 
-| Training condition | Original accuracy | Stripped accuracy | Stripped Macro-F1 |
-|---|---:|---:|---:|
-| Character SVM | 79.75% | 40.81% | .3514 |
-| CodeT5 0% | 85.90% | 49.66% | .4349 |
-| CodeT5 50% | 83.24% | 79.57% | .7919 |
-| CodeT5 100% | 60.77% | 81.74% | .8185 |
+A fresh clone excludes private evidence and weights. Upload your downloaded benchmark/study ZIPs on `/results`. Keep the Python service running while a study runs.
 
-Mixed training improves stripped-code robustness, with a 2.66 percentage point original-code accuracy loss. This exceeds the planned two-point tolerance. Results cover one seed, five known generators, C code, and a previously examined test set.
+## Paired comparison and checks
 
-The code and test samples are shared here. Reports, presentation files, local environment files and trained weights are excluded from this folder's publication.
+After model setup, recompute both coverage methods on identical code from a completed 48-program study containing chunked results:
 
-## Sources
+```bash
+python FinalProject/tools/compare_study_coverage.py --study-zip "path/to/study_results.zip" --output "coverage_comparison"
+python FinalProject/tests/check_study.py
+```
+
+The comparison makes no API requests. The test uses mocked generations to check persistence, key-free retesting, coverage separation and avoidance of duplicate requests.
+
+`results/chunk_comparison/` holds small verified summaries and paired labels with code hashes. Earlier run `376530e8...` and newer run `a83921e9...` contain different generated code; comparing runs directly cannot isolate chunking. Local reruns instead use the newer run's identical code:
+
+| Classifier / comments | First512 ID matches | Chunk ID matches | First512 Gemini family | Chunk Gemini family |
+|---|---:|---:|---:|---:|
+| 50% / kept | 27/36 | 27/36 | 12/12 | 12/12 |
+| 50% / removed | 28/36 | 27/36 | 12/12 | 12/12 |
+| 100% / kept | 28/36 | 28/36 | 2/12 | 3/12 |
+| 100% / removed | 28/36 | 28/36 | 12/12 | 12/12 |
+
+These exploratory results do not show a consistent accuracy improvement from chunking. Gemini is a newer version and is reported separately.
+
+## Scope and sources
+
+The classifier always chooses among five known LLM labels for C code. Scores are uncalibrated. It cannot prove authorship, detect human code or reject unknown generators.
 
 - [Primary paper](https://doi.org/10.1145/3733799.3762964)
+- [Authors' implementation](https://github.com/LLMauthorbench/LLMauthorbench)
 - [CodeT5+](https://aclanthology.org/2023.emnlp-main.68/)
-- [Authors' repository](https://github.com/LLMauthorbench/LLMauthorbench)
-- [Assignment and critique code](https://github.com/S3eeDTR/LLM-AuthorBench-Assignment)

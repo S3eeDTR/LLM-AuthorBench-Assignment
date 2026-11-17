@@ -4,11 +4,18 @@ import json
 import hashlib
 from pathlib import Path
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, parse_qs
+import io
+import zipfile
 from inference import Engine, DISPLAY
+from generation import available_models, generate
+from study import StudyRunner, PROMPTS
+from results import ResultStore
 
 STATIC = Path(__file__).parent / 'static'
 ENGINE = None
+STUDY = None
+RESULTS = None
 
 def benchmark_samples():
     folder = Path(__file__).resolve().parents[1] / 'test_samples'
@@ -42,14 +49,47 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/api/results': return self.reply(200,RESULTS.read())
+        if path == '/api/prompts':
+            return self.reply(200, {'prompts':[{'task':task,'prompt':prompt} for task,prompt in PROMPTS]})
+        if path == '/api/studies':
+            runs=[]
+            for file in sorted(STUDY.root.glob('*/study.json'),reverse=True):
+                try:
+                    state=STUDY.read(file.parent.name)
+                    runs.append({'id':state['id'],'status':state['status'],'created_at':state['created_at']})
+                except (OSError,ValueError,KeyError): pass
+            return self.reply(200, {'runs':runs})
+        if path in ['/api/study', '/api/study/download']:
+            try:
+                run_id=parse_qs(urlsplit(self.path).query).get('run_id',[''])[0]
+                state=STUDY.read(run_id)
+                if path == '/api/study': return self.reply(200,state)
+                buffer=io.BytesIO()
+                with zipfile.ZipFile(buffer,'w',zipfile.ZIP_DEFLATED) as archive:
+                    folder=STUDY.folder(run_id)
+                    for file in folder.iterdir():
+                        if file.suffix in ['.json','.csv','.c']: archive.write(file,file.name)
+                return self.reply(200,buffer.getvalue(),'application/zip')
+            except (OSError,ValueError,KeyError): return self.reply(404,{'error':'Study not found.'})
         if path == '/api/status':
             return self.reply(200, {'ready': True, 'device': str(ENGINE.device), 'labels': DISPLAY})
+        if path == '/api/generator-models':
+            try: return self.reply(200, available_models())
+            except Exception: return self.reply(502, {'error': 'Could not check OpenRouter availability. Try refreshing.'})
         if path == '/api/samples':
             try:
                 return self.reply(200, {'samples': benchmark_samples()})
             except (OSError, ValueError, KeyError):
                 return self.reply(503, {'error': 'Benchmark samples are unavailable. You can still paste code or open a file.'})
-        files = {'/': ('index.html', 'text/html; charset=utf-8'),
+        files = {'/': ('home.html', 'text/html; charset=utf-8'),
+                 '/live': ('index.html', 'text/html; charset=utf-8'),
+                 '/results': ('results.html', 'text/html; charset=utf-8'),
+                 '/results.js': ('results.js', 'text/javascript; charset=utf-8'),
+                 '/generate': ('generate.html', 'text/html; charset=utf-8'),
+                 '/study': ('study.html', 'text/html; charset=utf-8'),
+                 '/study.js': ('study.js', 'text/javascript; charset=utf-8'),
+                 '/generator.js': ('generator.js', 'text/javascript; charset=utf-8'),
                  '/app.js': ('app.js', 'text/javascript; charset=utf-8'),
                  '/style.css': ('style.css', 'text/css; charset=utf-8')}
         if path not in files: return self.reply(404, {'error': 'Not found.'})
@@ -57,7 +97,8 @@ class Handler(BaseHTTPRequestHandler):
         return self.reply(200, (STATIC / name).read_bytes(), content_type)
 
     def do_POST(self):
-        if urlsplit(self.path).path != '/api/analyze':
+        route = urlsplit(self.path).path
+        if route not in ['/api/analyze', '/api/generate','/api/study/start','/api/study/pause','/api/results/import']:
             return self.reply(404, {'error': 'Not found.'})
         # Accept only same-origin browser requests; the service binds to localhost.
         origin = self.headers.get('Origin')
@@ -65,16 +106,20 @@ class Handler(BaseHTTPRequestHandler):
             return self.reply(403, {'error': 'Use the local web page to submit code.'})
         try:
             length = int(self.headers.get('Content-Length', '0'))
-            if not 0 < length <= 500000:
+            if not 0 < length <= (28_000_000 if route=='/api/results/import' else 500000):
                 return self.reply(413, {'error': 'The submitted code is too large or empty.'})
             data = json.loads(self.rfile.read(length))
             if not isinstance(data, dict): raise ValueError('Expected a JSON object.')
-            result = ENGINE.analyze(data.get('code'), data.get('model', '050'), data.get('strip', False))
+            if route == '/api/results/import': result=RESULTS.upload(data)
+            elif route == '/api/study/start': result=STUDY.start(data)
+            elif route == '/api/study/pause':
+                STUDY.pause_event.set();result={'status':'Pause requested; the current operation will finish and save.'}
+            else: result = generate(data) if route == '/api/generate' else ENGINE.analyze(data.get('code'), data.get('model', '050'), data.get('strip', False),data.get('mode','first512'))
             return self.reply(200, result)
         except (ValueError, TypeError, json.JSONDecodeError) as exc:
             return self.reply(400, {'error': str(exc)})
         except Exception as exc:
-            print(f'Inference error: {type(exc).__name__}: {exc}', flush=True)
+            print(f'Request failed: {type(exc).__name__}', flush=True)
             return self.reply(500, {'error': 'The model could not finish. Check the server window or restart with --device cpu.'})
 
 if __name__ == '__main__':
@@ -83,6 +128,8 @@ if __name__ == '__main__':
     parser.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')
     args = parser.parse_args()
     ENGINE = Engine(args.device)
+    STUDY = StudyRunner(ENGINE)
+    RESULTS = ResultStore()
     server = ThreadingHTTPServer(('127.0.0.1', args.port), Handler)
     print(f'Open http://127.0.0.1:{args.port} | {args.device} | Ctrl+C to stop', flush=True)
     try: server.serve_forever()

@@ -1,0 +1,122 @@
+[
+  {
+    "mode": "first512",
+    "classifier": "050",
+    "comments_removed": false,
+    "id_matches": 27,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 20,
+    "multichunk": 0,
+    "per_generator": {
+      "deepseek/deepseek-chat": 6,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 9
+    }
+  },
+  {
+    "mode": "first512",
+    "classifier": "050",
+    "comments_removed": true,
+    "id_matches": 28,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 20,
+    "multichunk": 0,
+    "per_generator": {
+      "deepseek/deepseek-chat": 7,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 9
+    }
+  },
+  {
+    "mode": "first512",
+    "classifier": "100",
+    "comments_removed": false,
+    "id_matches": 28,
+    "comparable_n": 36,
+    "gemini_matches": 2,
+    "gpt_predictions": 25,
+    "multichunk": 0,
+    "per_generator": {
+      "deepseek/deepseek-chat": 8,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 8
+    }
+  },
+  {
+    "mode": "first512",
+    "classifier": "100",
+    "comments_removed": true,
+    "id_matches": 28,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 19,
+    "multichunk": 0,
+    "per_generator": {
+      "deepseek/deepseek-chat": 8,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 8
+    }
+  },
+  {
+    "mode": "chunks",
+    "classifier": "050",
+    "comments_removed": false,
+    "id_matches": 27,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 20,
+    "multichunk": 9,
+    "per_generator": {
+      "deepseek/deepseek-chat": 6,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 9
+    }
+  },
+  {
+    "mode": "chunks",
+    "classifier": "050",
+    "comments_removed": true,
+    "id_matches": 27,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 21,
+    "multichunk": 7,
+    "per_generator": {
+      "deepseek/deepseek-chat": 6,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 9
+    }
+  },
+  {
+    "mode": "chunks",
+    "classifier": "100",
+    "comments_removed": false,
+    "id_matches": 28,
+    "comparable_n": 36,
+    "gemini_matches": 3,
+    "gpt_predictions": 24,
+    "multichunk": 9,
+    "per_generator": {
+      "deepseek/deepseek-chat": 8,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 8
+    }
+  },
+  {
+    "mode": "chunks",
+    "classifier": "100",
+    "comments_removed": true,
+    "id_matches": 28,
+    "comparable_n": 36,
+    "gemini_matches": 12,
+    "gpt_predictions": 19,
+    "multichunk": 7,
+    "per_generator": {
+      "deepseek/deepseek-chat": 8,
+      "openai/gpt-4.1": 12,
+      "meta-llama/llama-3.3-70b-instruct": 8
+    }
+  }
+]

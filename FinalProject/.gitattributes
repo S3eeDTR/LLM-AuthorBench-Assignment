@@ -1,2 +1,4 @@
 test_samples/*.c -text
 START_WEB_APP.cmd text eol=crlf
+
+*.command text eol=lf
